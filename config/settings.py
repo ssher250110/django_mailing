@@ -20,6 +20,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "mailing.apps.MailingConfig",
+    "users.apps.UsersConfig",
+    "blog.apps.BlogConfig",
 ]
 
 MIDDLEWARE = [
