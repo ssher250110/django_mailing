@@ -1,7 +1,11 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView, TemplateView
 
 from mailing.models import Client, Message, Mailing, LoggingMailing
+
+
+class InfoView(TemplateView):
+    template_name = "mailing/info_view.html"
 
 
 class ClientCreateView(CreateView):

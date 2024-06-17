@@ -4,11 +4,13 @@ from mailing.apps import MailingConfig
 from mailing.views import ClientListView, ClientCreateView, ClientDetailView, ClientUpdateView, ClientDeleteView, \
     MessageCreateView, MessageListView, MessageDetailView, MessageUpdateView, MessageDeleteView, \
     MailingCreateView, MailingListView, MailingDetailView, MailingUpdateView, MailingDeleteView, \
-    LoggingMailingCreateView, LoggingMailingListView, LoggingMailingDetailView
+    LoggingMailingCreateView, LoggingMailingListView, LoggingMailingDetailView, InfoView
 
 app_name = MailingConfig.name
 
 urlpatterns = [
+    path("", InfoView.as_view(), name="info-view"),
+
     path("client/create/", ClientCreateView.as_view(), name="client-create"),
     path("client/", ClientListView.as_view(), name="client-list"),
     path("client/<int:pk>/", ClientDetailView.as_view(), name="client-detail"),
@@ -22,12 +24,12 @@ urlpatterns = [
     path("message/<int:pk>/delete/", MessageDeleteView.as_view(), name="message-delete"),
 
     path("mailing/create/", MailingCreateView.as_view(), name="mailing-create"),
-    path("", MailingListView.as_view(), name="mailing-list"),
+    path("mailing/", MailingListView.as_view(), name="mailing-list"),
     path("mailing/<int:pk>/", MailingDetailView.as_view(), name="mailing-detail"),
     path("mailing/<int:pk>/update", MailingUpdateView.as_view(), name="mailing-update"),
     path("mailing/<int:pk>/delete/", MailingDeleteView.as_view(), name="mailing-delete"),
 
-    path("logging/create/", LoggingMailingCreateView.as_view(), name="logging-create"),
-    path("loggin/", LoggingMailingListView.as_view(), name="logging-list"),
-    path("logging/<int:pk>/", LoggingMailingDetailView.as_view(), name="loggin-detail"),
+    path("logging_mailing/create/", LoggingMailingCreateView.as_view(), name="logging_mailing-create"),
+    path("loggin_mailing/", LoggingMailingListView.as_view(), name="logging_mailing-list"),
+    path("logging_mailing/<int:pk>/", LoggingMailingDetailView.as_view(), name="logging_mailing-detail"),
 ]
