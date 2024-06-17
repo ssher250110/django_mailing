@@ -1,10 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "mailing/base.html" %}
 
-</body>
-</html>
+{% block title_page %}
+    Список рассылок
+{% endblock %}
+
+{% block content %}
+    <div class="col align-self-center">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Название рассылки</th>
+                        <th>Клиенты сервиса</th>
+                        <th>Сообщение</th>
+                        <th>Дата и время начала рассылки</th>
+                        <th>Периодичность рассылки</th>
+                        <th>Статус рассылки</th>
+                    </tr>
+                    <tr>
+                        <td>{{ object.name }}</td>
+                        <td>{{ object.clients.all|join:"; " }}</td>
+                        <td>{{ object.message }}</td>
+                        <td>{{ object.start_mailing }}</td>
+                        <td>{{ object.period }}</td>
+                        <td>{{ object.status_mailing }}</td>
+                </table>
+                <a class="btn btn--sm btn-outline-secondary"
+                   href="{% url 'mailing:mailing-update' object.id %}"
+                   role="button">Изменить
+                </a>
+                <a class="btn btn--sm btn-outline-secondary"
+                   href="{% url 'mailing:mailing-delete' object.id %}"
+                   role="button">Удалить</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
