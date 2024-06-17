@@ -1,10 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "mailing/base.html" %}
 
-</body>
-</html>
+{% block title_page %}
+    Список попыток рассылок
+{% endblock %}
+
+{% block title %}
+    <h2>Список попыток рассылок</h2>
+{% endblock %}
+
+{% block content %}
+    <div class="container text-center col-9">
+        <div class="col align-self-center">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-bordered ">
+                        <tr>
+                            <th>Рассылка</th>
+                            <th>Статус попытки</th>
+                            <th></th>
+                        </tr>
+                        {% for object in object_list %}
+                            <tr>
+                            <td>{{ object.mailing }}</td>
+                            <td>{{ object.status_attempt }}</td>
+                            <td><a class="btn btn--sm btn-secondary"
+                                   href="{% url 'mailing:client-detail' object.id %}"
+                                   role="button">Посмотреть
+                            </a></td>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
