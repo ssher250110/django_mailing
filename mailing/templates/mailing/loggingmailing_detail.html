@@ -1,10 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "mailing/base.html" %}
 
-</body>
-</html>
+{% block title_page %}
+    {{ object.mailing.name }}
+{% endblock %}
+
+
+{% block content %}
+    <div class="container text-center col-9">
+        <div class="col align-self-center">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-bordered ">
+                        <tr>
+                            <th>Рассылка</th>
+                            <th>Дата и время последней попытки</th>
+                            <th>Статус попытки</th>
+                            <th>Ответ сервера</th>
+                        </tr>
+                        <tr>
+                            <td>{{ object.mailing.name }}</td>
+                            <td>{{ object.last_attempt_mailing }}</td>
+                            {% if object.status_attempt %}
+                                <td>Успешно</td>
+                            {% else %}
+                                <td>Не успешно</td>
+                            {% endif %}
+                            <td>{{ object.response }}</td>
+                            <td><a class="btn btn--sm btn-secondary"
+                                   href="{% url 'mailing:logging_mailing-detail' object.id %}"
+                                   role="button">Посмотреть
+                            </a></td>
+                    </table>
+                    <a class="btn btn--sm btn-outline-secondary"
+                       href="{% url 'mailing:client-update' object.id %}"
+                       role="button">Изменить
+                    </a>
+                    <a class="btn btn--sm btn-outline-secondary"
+                       href="{% url 'mailing:client-delete' object.id %}"
+                       role="button">Удалить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

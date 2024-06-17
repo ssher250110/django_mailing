@@ -22,9 +22,13 @@
                         {% for object in object_list %}
                             <tr>
                             <td>{{ object.mailing }}</td>
-                            <td>{{ object.status_attempt }}</td>
+                            {% if object.status_attempt %}
+                                <td>Успешно</td>
+                            {% else %}
+                                <td>Не успешно</td>
+                            {% endif %}
                             <td><a class="btn btn--sm btn-secondary"
-                                   href="{% url 'mailing:client-detail' object.id %}"
+                                   href="{% url 'mailing:logging_mailing-detail' object.id %}"
                                    role="button">Посмотреть
                             </a></td>
                         {% endfor %}

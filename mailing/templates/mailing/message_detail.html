@@ -1,10 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "mailing/base.html" %}
 
-</body>
-</html>
+{% block title_page %}
+    {{ object.subject }}
+{% endblock %}
+
+{% block content %}
+    <div class="container text-center col-6">
+        <div class="col align-self-center">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-bordered ">
+                        <tr>
+                            <th>Тема сообщения</th>
+                            <th>Тело сообщения</th>
+                        </tr>
+                        <tr>
+                            <td>{{ object.subject }}</td>
+                            <td>{{ object.body }}</td>
+                    </table>
+                    <a class="btn btn--sm btn-outline-secondary"
+                       href="{% url 'mailing:message-update' object.id %}"
+                       role="button">Изменить
+                    </a>
+                    <a class="btn btn--sm btn-outline-secondary"
+                       href="{% url 'mailing:message-delete' object.id %}"
+                       role="button">Удалить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

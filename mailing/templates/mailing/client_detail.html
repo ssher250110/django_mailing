@@ -1,5 +1,38 @@
 {% extends "mailing/base.html" %}
 
 {% block title_page %}
-    Список клиентов
+    {{ object.email }}
+{% endblock %}
+
+{% block content %}
+    <div class="container text-center col-8">
+        <div class="col align-self-center">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-bordered ">
+                        <tr>
+                            <th>Почта</th>
+                            <th>Фамилия</th>
+                            <th>Имя</th>
+                            <th>Отчество</th>
+                            <th>Комментарий</th>
+                        </tr>
+                        <tr>
+                            <td>{{ object.email }}</td>
+                            <td>{{ object.last_name }}</td>
+                            <td>{{ object.first_name }}</td>
+                            <td>{{ object.middle_name }}</td>
+                            <td>{{ object.comment }}</td>
+                    </table>
+                    <a class="btn btn--sm btn-outline-secondary"
+                       href="{% url 'mailing:client-update' object.id %}"
+                       role="button">Изменить
+                    </a>
+                    <a class="btn btn--sm btn-outline-secondary"
+                       href="{% url 'mailing:client-delete' object.id %}"
+                       role="button">Удалить</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
