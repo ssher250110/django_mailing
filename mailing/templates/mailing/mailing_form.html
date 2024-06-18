@@ -19,7 +19,7 @@
                                 {% csrf_token %}
                                 {{ form.as_p }}
                                 <a class="btn btn--sm btn-outline-secondary"
-                                   href="{% url "mailing:mailing-list" %}"
+                                   href="{% url "mailing:mailing-detail" object.id %}"
                                    role="button">{{ back }}</a>
                                 <button type="submit" class="btn btn-outline-success">
                                     {% if object %}
