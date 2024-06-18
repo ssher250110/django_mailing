@@ -25,7 +25,7 @@ class ClientDetailView(DetailView):
 
 class ClientUpdateView(UpdateView):
     model = Client
-    fields = "__all__"
+    form_class = ClientForm
 
     def get_success_url(self):
         return reverse("mailing:client-detail", args=[self.kwargs.get('pk')])
@@ -52,7 +52,7 @@ class MessageDetailView(DetailView):
 
 class MessageUpdateView(UpdateView):
     model = Message
-    fields = "__all__"
+    form_class = MessageForm
 
     def get_success_url(self):
         return reverse("mailing:message-detail", args=[self.kwargs.get('pk')])
@@ -79,7 +79,7 @@ class MailingDetailView(DetailView):
 
 class MailingUpdateView(UpdateView):
     model = Mailing
-    fields = "__all__"
+    form_class = MailingForm
 
     def get_success_url(self):
         return reverse("mailing:mailing-detail", args=[self.kwargs.get('pk')])
