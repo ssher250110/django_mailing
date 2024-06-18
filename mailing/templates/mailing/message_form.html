@@ -2,9 +2,9 @@
 
 {% block title_page %}
     {% if object %}
-        Изменить письмо
+        {{ update_message }}
     {% else %}
-        Добавить письмо
+        {{ create_message }}
     {% endif %}
 {% endblock %}
 
@@ -20,12 +20,12 @@
                                 {{ form.as_p }}
                                 <a class="btn btn--sm btn-outline-secondary"
                                    href="{% url "mailing:message-list" %}"
-                                   role="button">Назад</a>
+                                   role="button">{{ back }}</a>
                                 <button type="submit" class="btn btn-outline-success">
                                     {% if object %}
-                                        Изменить письмо
+                                        {{ update_message }}
                                     {% else %}
-                                        Добавить письмо
+                                        {{ create_message }}
                                     {% endif %}
                                 </button>
                             </div>

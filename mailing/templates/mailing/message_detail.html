@@ -11,8 +11,8 @@
                 <div class="card-body">
                     <table class="table table-bordered ">
                         <tr>
-                            <th>Тема сообщения</th>
-                            <th>Тело сообщения</th>
+                            <th>{{ subject_message }}</th>
+                            <th>{{ body_message }}</th>
                         </tr>
                         <tr>
                             <td>{{ object.subject }}</td>
@@ -20,14 +20,14 @@
                     </table>
                     <a class="btn btn--sm btn-outline-secondary"
                        href="{% url "mailing:message-list" %}"
-                       role="button">Назад</a>
+                       role="button">{{ back }}</a>
                     <a class="btn btn--sm btn-outline-secondary"
                        href="{% url 'mailing:message-update' object.id %}"
-                       role="button">Изменить
+                       role="button">{{ update }}
                     </a>
                     <a class="btn btn--sm btn-outline-secondary"
                        href="{% url 'mailing:message-delete' object.id %}"
-                       role="button">Удалить</a>
+                       role="button">{{ delete }}</a>
                 </div>
             </div>
         </div>

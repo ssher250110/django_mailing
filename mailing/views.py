@@ -70,19 +70,39 @@ class MessageCreateView(CreateView):
     model = Message
     form_class = MessageForm
     success_url = reverse_lazy("mailing:message-list")
+    extra_context = {
+        "create_message": "Добавить письмо",
+        "back": "Назад",
+    }
 
 
 class MessageListView(ListView):
     model = Message
+    extra_context = {
+        "title_page_message_list": "Список писем",
+        "subject_message": "Тема сообщения",
+        "view": "Посмотреть",
+    }
 
 
 class MessageDetailView(DetailView):
     model = Message
+    extra_context = {
+        "subject_message": "Тема сообщения",
+        "body_message": "Тело сообщения",
+        "back": "Назад",
+        "update": "Изменить",
+        "delete": "Удалить",
+    }
 
 
 class MessageUpdateView(UpdateView):
     model = Message
     form_class = MessageForm
+    extra_context = {
+        "update_message": "Изменить письмо",
+        "back": "Назад",
+    }
 
     def get_success_url(self):
         return reverse("mailing:message-detail", args=[self.kwargs.get('pk')])
@@ -91,6 +111,12 @@ class MessageUpdateView(UpdateView):
 class MessageDeleteView(DeleteView):
     model = Message
     success_url = reverse_lazy("mailing:message-list")
+    extra_context = {
+        "title_page_delete_message": "Удаление сообщения",
+        "delete_message": "Удалить сообщение",
+        "delete": "Удалить",
+        "cancel": "Отмена",
+    }
 
 
 class MailingCreateView(CreateView):

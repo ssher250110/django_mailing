@@ -1,11 +1,11 @@
 {% extends "mailing/base.html" %}
 
 {% block title_page %}
-    Список писем
+    {{ title_page_message_list }}
 {% endblock %}
 
 {% block title %}
-    <h2>Список писем</h2>
+    <h2>{{ title_page_message_list }}</h2>
 {% endblock %}
 
 {% block content %}
@@ -18,14 +18,14 @@
                     </a>
                     <table class="table table-bordered ">
                         <tr>
-                            <th>Тема сообщения</th>
+                            <th>{{ subject_message }}</th>
                         </tr>
                         {% for object in object_list %}
                             <tr>
                             <td>{{ object.subject }}</td>
                             <td><a class="btn btn--sm btn-secondary"
                                    href="{% url 'mailing:message-detail' object.id %}"
-                                   role="button">Посмотреть
+                                   role="button">{{ view }}
                             </a></td>
                         {% endfor %}
                     </table>
