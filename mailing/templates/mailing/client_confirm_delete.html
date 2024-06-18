@@ -1,7 +1,7 @@
 {% extends 'mailing/base.html' %}
 
 {% block title_page %}
-    Удаление клиента
+    {{ title_page }}
 {% endblock %}
 
 {% block content %}
@@ -11,12 +11,12 @@
                 <div class="col">
                     <div class="card shadow-sm">
                         <div class="card-body">
-                            <p>Удалить клиента: {{ object.email }} - {{ object.last_name }}?</p>
+                            <p>У{{ delete_client }}: {{ object.email }} - {{ object.last_name }}?</p>
                             <form method="post">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn--sm btn-danger">Удалить</button>
+                                <button type="submit" class="btn btn--sm btn-danger">{{ delete }}</button>
                                 <a class="btn btn--sm btn-outline-secondary"
-                                   href="{% url 'mailing:client-detail' object.id %}" role="button">Отмена</a>
+                                   href="{% url 'mailing:client-detail' object.id %}" role="button">{{ cancel }}</a>
                             </form>
                         </div>
                     </div>

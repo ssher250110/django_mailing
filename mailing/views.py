@@ -13,19 +13,43 @@ class ClientCreateView(CreateView):
     model = Client
     form_class = ClientForm
     success_url = reverse_lazy("mailing:client-list")
+    extra_context = {
+        "title_page_create": "Добавить клиента",
+        "back": "Назад",
+    }
 
 
 class ClientListView(ListView):
     model = Client
+    extra_context = {
+        "title_page": "Список клиентов",
+        "email": "Почта",
+        "last_name": "Фамилия",
+        "view": "Посмотреть",
+    }
 
 
 class ClientDetailView(DetailView):
     model = Client
+    extra_context = {
+        "email": "Почта",
+        "last_name": "Фамилия",
+        "first_name": "Имя",
+        "middle_name": "Отчество",
+        "comment": "Комментарий",
+        "back": "Назад",
+        "update": "Изменить",
+        "delete": "Удалить",
+    }
 
 
 class ClientUpdateView(UpdateView):
     model = Client
     form_class = ClientForm
+    extra_context = {
+        "title_page_update": "Изменить клиента",
+        "back": "Назад",
+    }
 
     def get_success_url(self):
         return reverse("mailing:client-detail", args=[self.kwargs.get('pk')])
@@ -34,6 +58,12 @@ class ClientUpdateView(UpdateView):
 class ClientDeleteView(DeleteView):
     model = Client
     success_url = reverse_lazy("mailing:client-list")
+    extra_context = {
+        "title_page": "Удаление клиента",
+        "delete_client": "Удалить клиента",
+        "delete": "Удалить",
+        "cancel": "Отмена",
+    }
 
 
 class MessageCreateView(CreateView):
