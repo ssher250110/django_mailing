@@ -12,21 +12,23 @@
     <div class="album py-5 bg-body-tertiary">
         <div class="container">
             <form method="post" enctype="multipart/form-data">
-                <div class="row-12">
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            {% csrf_token %}
-                            {{ form.as_p }}
-                            <a class="btn btn--sm btn-outline-secondary"
-                               href="{% url "mailing:mailing-list" %}"
-                               role="button">Назад</a>
-                            <button type="submit" class="btn btn-outline-success">
-                                {% if object %}
-                                    Изменить рассылку
-                                {% else %}
-                                    Добавить рассылку
-                                {% endif %}
-                            </button>
+                <div class="row justify-content-center">
+                    <div class="col-6">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <a class="btn btn--sm btn-outline-secondary"
+                                   href="{% url "mailing:mailing-list" %}"
+                                   role="button">Назад</a>
+                                <button type="submit" class="btn btn-outline-success">
+                                    {% if object %}
+                                        Изменить рассылку
+                                    {% else %}
+                                        Добавить рассылку
+                                    {% endif %}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
