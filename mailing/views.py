@@ -1,4 +1,4 @@
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView, TemplateView
 
 from mailing.models import Client, Message, Mailing, LoggingMailing
@@ -10,6 +10,8 @@ class InfoView(TemplateView):
 
 class ClientCreateView(CreateView):
     model = Client
+    fields = "__all__"
+    success_url = reverse_lazy("mailing:client-list")
 
 
 class ClientListView(ListView):
@@ -22,6 +24,10 @@ class ClientDetailView(DetailView):
 
 class ClientUpdateView(UpdateView):
     model = Client
+    fields = "__all__"
+
+    def get_success_url(self):
+        return reverse("mailing:client-detail", args=[self.kwargs.get('pk')])
 
 
 class ClientDeleteView(DeleteView):
@@ -31,6 +37,8 @@ class ClientDeleteView(DeleteView):
 
 class MessageCreateView(CreateView):
     model = Message
+    fields = "__all__"
+    success_url = reverse_lazy("mailing:message-list")
 
 
 class MessageListView(ListView):
@@ -43,6 +51,10 @@ class MessageDetailView(DetailView):
 
 class MessageUpdateView(UpdateView):
     model = Message
+    fields = "__all__"
+
+    def get_success_url(self):
+        return reverse("mailing:message-detail", args=[self.kwargs.get('pk')])
 
 
 class MessageDeleteView(DeleteView):
@@ -52,6 +64,8 @@ class MessageDeleteView(DeleteView):
 
 class MailingCreateView(CreateView):
     model = Mailing
+    fields = "__all__"
+    success_url = reverse_lazy("mailing:mailing-list")
 
 
 class MailingListView(ListView):
@@ -64,15 +78,15 @@ class MailingDetailView(DetailView):
 
 class MailingUpdateView(UpdateView):
     model = Mailing
+    fields = "__all__"
+
+    def get_success_url(self):
+        return reverse("mailing:mailing-detail", args=[self.kwargs.get('pk')])
 
 
 class MailingDeleteView(DeleteView):
     model = Mailing
     success_url = reverse_lazy("mailing:mailing-list")
-
-
-class LoggingMailingCreateView(CreateView):
-    model = LoggingMailing
 
 
 class LoggingMailingListView(ListView):

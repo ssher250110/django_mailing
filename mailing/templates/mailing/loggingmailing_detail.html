@@ -26,18 +26,11 @@
                                 <td>Не успешно</td>
                             {% endif %}
                             <td>{{ object.response }}</td>
-                            <td><a class="btn btn--sm btn-secondary"
-                                   href="{% url 'mailing:logging_mailing-detail' object.id %}"
-                                   role="button">Посмотреть
-                            </a></td>
                     </table>
                     <a class="btn btn--sm btn-outline-secondary"
-                       href="{% url 'mailing:client-update' object.id %}"
-                       role="button">Изменить
+                       href="{% url 'mailing:logging_mailing-list' %}"
+                       role="button">Назад
                     </a>
-                    <a class="btn btn--sm btn-outline-secondary"
-                       href="{% url 'mailing:client-delete' object.id %}"
-                       role="button">Удалить</a>
                 </div>
             </div>
         </div>

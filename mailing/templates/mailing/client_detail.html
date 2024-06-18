@@ -25,11 +25,14 @@
                             <td>{{ object.comment }}</td>
                     </table>
                     <a class="btn btn--sm btn-outline-secondary"
-                       href="{% url 'mailing:client-update' object.id %}"
+                       href="{% url "mailing:client-list" %}"
+                       role="button">Назад</a>
+                    <a class="btn btn--sm btn-outline-secondary"
+                       href="{% url "mailing:client-update" object.id %}"
                        role="button">Изменить
                     </a>
                     <a class="btn btn--sm btn-outline-secondary"
-                       href="{% url 'mailing:client-delete' object.id %}"
+                       href="{% url "mailing:client-delete" object.id %}"
                        role="button">Удалить</a>
                 </div>
             </div>

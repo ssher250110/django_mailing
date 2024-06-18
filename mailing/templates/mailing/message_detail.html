@@ -19,6 +19,9 @@
                             <td>{{ object.body }}</td>
                     </table>
                     <a class="btn btn--sm btn-outline-secondary"
+                       href="{% url "mailing:message-list" %}"
+                       role="button">Назад</a>
+                    <a class="btn btn--sm btn-outline-secondary"
                        href="{% url 'mailing:message-update' object.id %}"
                        role="button">Изменить
                     </a>

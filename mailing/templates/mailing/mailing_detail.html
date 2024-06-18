@@ -26,6 +26,9 @@
                         <td>{{ object.status_mailing }}</td>
                 </table>
                 <a class="btn btn--sm btn-outline-secondary"
+                   href="{% url "mailing:mailing-list" %}"
+                   role="button">Назад</a>
+                <a class="btn btn--sm btn-outline-secondary"
                    href="{% url 'mailing:mailing-update' object.id %}"
                    role="button">Изменить
                 </a>
