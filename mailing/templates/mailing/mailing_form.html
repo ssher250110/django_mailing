@@ -12,39 +12,37 @@
     <div class="album py-5 bg-body-tertiary">
         <div class="container">
             <form method="post" enctype="multipart/form-data">
-                <div class="row row-cols-1 row-cols-sm-2 row-cols g-2">
-                    <div class="col">
-                        <div class="card shadow-sm">
-                            <div class="card-body">
-                                {% csrf_token %}
-                                {{ form.as_p }}
-                                <a class="btn btn--sm btn-outline-secondary"
-                                   href="{% url "mailing:mailing-detail" object.id %}"
-                                   role="button">Назад</a>
-                                <button type="submit" class="btn btn-outline-success">
-                                    {% if object %}
-                                        Изменить рассылку
-                                    {% else %}
-                                        Добавить рассылку
-                                    {% endif %}
-                                </button>
-                            </div>
+                <div class="row-12">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <a class="btn btn--sm btn-outline-secondary"
+                               href="{% url "mailing:mailing-list" %}"
+                               role="button">Назад</a>
+                            <button type="submit" class="btn btn-outline-success">
+                                {% if object %}
+                                    Изменить рассылку
+                                {% else %}
+                                    Добавить рассылку
+                                {% endif %}
+                            </button>
                         </div>
                     </div>
-                    {#                    <div class="col">#}
-                    {#                        <div class="card shadow-sm">#}
-                    {#                            <div class="card-body">#}
-                    {#                                {{ formset.management_form }}#}
-                    {#                                {% for form in formset %}#}
-                    {#                                    {{ form.as_p }}#}
-                    {#                                    {% if not forloop.last %}#}
-                    {#                                        <hr>#}
-                    {#                                    {% endif %}#}
-                    {#                                {% endfor %}#}
-                    {#                            </div>#}
-                    {#                        </div>#}
-                    {#                    </div>#}
                 </div>
+                {#                    <div class="col">#}
+                {#                        <div class="card shadow-sm">#}
+                {#                            <div class="card-body">#}
+                {#                                {{ formset.management_form }}#}
+                {#                                {% for form in formset %}#}
+                {#                                    {{ form.as_p }}#}
+                {#                                    {% if not forloop.last %}#}
+                {#                                        <hr>#}
+                {#                                    {% endif %}#}
+                {#                                {% endfor %}#}
+                {#                            </div>#}
+                {#                        </div>#}
+                {#                    </div>#}
             </form>
         </div>
     </div>

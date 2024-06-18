@@ -6,7 +6,7 @@ from mailing.models import Client, Message, Mailing, LoggingMailing
 
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ("pk", "email", "last_name", "comment",)
+    list_display = ("pk", "email", "last_name", "first_name", "middle_name", "comment",)
     search_fields = ("email", "last_name", "comment",)
 
 

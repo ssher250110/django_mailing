@@ -12,7 +12,11 @@ class Client(models.Model):
     comment = models.TextField(**NULLABLE, verbose_name="Комментарий")
 
     def __str__(self):
-        return f"{self.email}: {self.last_name} - {self.comment if self.comment else "Комментарий отсутствует"}"
+        return (f"Почта: {self.email} "
+                f"Фамилия: {self.last_name if self.last_name else "Отсутствует"} "
+                f"Имя: {self.first_name if self.first_name else "Отсутствует"} "
+                f"Отчество: {self.middle_name if self.middle_name else "Отсутствует"} "
+                f"Комментарий: {self.comment if self.comment else "Отсутствует"} ")
 
     class Meta:
         verbose_name = "Клиент"
@@ -45,7 +49,7 @@ class Mailing(models.Model):
         ("запущена", "запущена"),
     ]
     name = models.CharField(unique=True, max_length=255, verbose_name="Название рассылки")
-    clients = models.ManyToManyField("Client", verbose_name="Клиенты сервиса")
+    clients = models.ManyToManyField("Client", verbose_name="Клиенты")
     message = models.ForeignKey("Message", on_delete=models.CASCADE, verbose_name="Сообщение")
     start_mailing = models.DateTimeField(default=timezone.now, verbose_name="Дата и время начала рассылки")
     period = models.CharField(max_length=15, choices=PERIOD, verbose_name="Периодичность рассылки")
