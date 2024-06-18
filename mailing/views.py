@@ -89,6 +89,10 @@ class MailingDeleteView(DeleteView):
     success_url = reverse_lazy("mailing:mailing-list")
 
 
+class LoggingMailingCreateView(CreateView):
+    model = LoggingMailing
+
+
 class LoggingMailingListView(ListView):
     model = LoggingMailing
 
