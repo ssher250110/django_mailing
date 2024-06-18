@@ -63,6 +63,21 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-apscheduler"
+version = "0.6.2"
+description = "APScheduler for Django"
+optional = false
+python-versions = "*"
+files = [
+    {file = "django-apscheduler-0.6.2.tar.gz", hash = "sha256:60ced2c07b531b0477076dfef2d6de4790a983a4bbd75fae5e387ac360e9c8fd"},
+    {file = "django_apscheduler-0.6.2-py3-none-any.whl", hash = "sha256:d30a05be98e01c12aa50d0a7afd8d0fd529c874d1c75af20891b6417d2f36475"},
+]
+
+[package.dependencies]
+apscheduler = ">=3.2,<4.0"
+django = ">=3.2"
+
+[[package]]
 name = "pillow"
 version = "10.3.0"
 description = "Python Imaging Library (Fork)"
@@ -311,4 +326,4 @@ devenv = ["check-manifest", "pytest (>=4.3)", "pytest-cov", "pytest-mock (>=3.3)
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "c7f8506fad0b2bb3254bea2f8aff1b14a5478935b510220a4ff56b2f649c86b4"
+content-hash = "95fcffd7bd631b10258d5ccb7c2d95f8911786fadb3aef4be0e6eb13ab96aaa4"
