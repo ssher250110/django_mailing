@@ -145,7 +145,7 @@ class MailingDetailView(DetailView):
         "name": "Название рассылки",
         "clients": "Клиенты",
         "message": "Сообщение",
-        "start_mailing": "Дата и время начала рассылки",
+        "start_mailing": "Дата и время первой отправки рассылки",
         "period": "Периодичность рассылки",
         "status_mailing": "Статус рассылки",
         "back": "Назад",
