@@ -10,12 +10,12 @@
             <div class="card-body">
                 <table class="table table-bordered">
                     <tr>
-                        <th>Название рассылки</th>
-                        <th>Клиенты</th>
-                        <th>Сообщение</th>
-                        <th>Дата и время начала рассылки</th>
-                        <th>Периодичность рассылки</th>
-                        <th>Статус рассылки</th>
+                        <th>{{ name }}</th>
+                        <th>{{ clients }}</th>
+                        <th>{{ message }}</th>
+                        <th>{{ start_mailing }}</th>
+                        <th>{{ period }}</th>
+                        <th>{{ status_mailing }}</th>
                     </tr>
                     <tr>
                         <td>{{ object.name }}</td>
@@ -27,14 +27,14 @@
                 </table>
                 <a class="btn btn--sm btn-outline-secondary"
                    href="{% url "mailing:mailing-list" %}"
-                   role="button">Назад</a>
+                   role="button">{{ back }}</a>
                 <a class="btn btn--sm btn-outline-secondary"
                    href="{% url 'mailing:mailing-update' object.id %}"
-                   role="button">Изменить
+                   role="button">{{ update }}
                 </a>
                 <a class="btn btn--sm btn-outline-secondary"
                    href="{% url 'mailing:mailing-delete' object.id %}"
-                   role="button">Удалить</a>
+                   role="button">{{ delete }}</a>
             </div>
         </div>
     </div>

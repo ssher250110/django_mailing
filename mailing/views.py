@@ -123,19 +123,44 @@ class MailingCreateView(CreateView):
     model = Mailing
     form_class = MailingForm
     success_url = reverse_lazy("mailing:mailing-list")
+    extra_context = {
+        "create_mailing": "Добавить рассылку",
+        "back": "Назад",
+    }
 
 
 class MailingListView(ListView):
     model = Mailing
+    extra_context = {
+        "title": "Список рассылок",
+        "name": "Название рассылки",
+        "status_mailing": "Статус рассылки",
+        "view": "Посмотреть",
+    }
 
 
 class MailingDetailView(DetailView):
     model = Mailing
+    extra_context = {
+        "name": "Название рассылки",
+        "clients": "Клиенты",
+        "message": "Сообщение",
+        "start_mailing": "Дата и время начала рассылки",
+        "period": "Периодичность рассылки",
+        "status_mailing": "Статус рассылки",
+        "back": "Назад",
+        "update": "Изменить",
+        "delete": "Удалить",
+    }
 
 
 class MailingUpdateView(UpdateView):
     model = Mailing
     form_class = MailingForm
+    extra_context = {
+        "update_mailing": "Изменить рассылку",
+        "back": "Назад",
+    }
 
     def get_success_url(self):
         return reverse("mailing:mailing-detail", args=[self.kwargs.get('pk')])
@@ -144,6 +169,12 @@ class MailingUpdateView(UpdateView):
 class MailingDeleteView(DeleteView):
     model = Mailing
     success_url = reverse_lazy("mailing:mailing-list")
+    extra_context = {
+        "title_page": "Удаление рассылки",
+        "delete_mailing": "Удалить рассылку",
+        "delete": "Удалить",
+        "cancel": "Отмена",
+    }
 
 
 class LoggingMailingCreateView(CreateView):

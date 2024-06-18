@@ -1,11 +1,11 @@
 {% extends "mailing/base.html" %}
 
 {% block title_page %}
-    Список рассылок
+    {{ title }}
 {% endblock %}
 
 {% block title %}
-    <h2>Список рассылок</h2>
+    <h2>{{ title }}</h2>
 {% endblock %}
 
 {% block content %}
@@ -18,8 +18,8 @@
                     </a>
                     <table class="table table-bordered">
                         <tr>
-                            <th>Название рассылки</th>
-                            <th>Статус рассылки</th>
+                            <th>{{ name }}</th>
+                            <th>{{ status_mailing }}</th>
                         </tr>
                         {% for object in object_list %}
                             <tr>
@@ -27,7 +27,7 @@
                             <td>{{ object.status_mailing }}</td>
                             <td><a class="btn btn--sm btn-secondary"
                                    href="{% url 'mailing:mailing-detail' object.id %}"
-                                   role="button">Посмотреть
+                                   role="button">{{ view }}
                             </a></td>
                         {% endfor %}
                     </table>

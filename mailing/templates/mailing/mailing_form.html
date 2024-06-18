@@ -2,9 +2,9 @@
 
 {% block title_page %}
     {% if object %}
-        Изменить рассылку
+        {{ update_mailing }}
     {% else %}
-        Добавить рассылку
+        {{ create_mailing }}
     {% endif %}
 {% endblock %}
 
@@ -20,12 +20,12 @@
                                 {{ form.as_p }}
                                 <a class="btn btn--sm btn-outline-secondary"
                                    href="{% url "mailing:mailing-list" %}"
-                                   role="button">Назад</a>
+                                   role="button">{{ back }}</a>
                                 <button type="submit" class="btn btn-outline-success">
                                     {% if object %}
-                                        Изменить рассылку
+                                        {{ update_mailing }}
                                     {% else %}
-                                        Добавить рассылку
+                                        {{ create_mailing }}
                                     {% endif %}
                                 </button>
                             </div>
