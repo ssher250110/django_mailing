@@ -183,7 +183,24 @@ class LoggingMailingCreateView(CreateView):
 
 class LoggingMailingListView(ListView):
     model = LoggingMailing
+    extra_context = {
+        "title_list_logging_mailing": "Список попыток рассылок",
+        "mailing": "Рассылка",
+        "status_attempt": "Статус попытки",
+        "successfully": "Успешно",
+        "not_successfully": "Не успешно",
+        "view": "Посмотреть",
+    }
 
 
 class LoggingMailingDetailView(DetailView):
     model = LoggingMailing
+    extra_context = {
+        "mailing": "Рассылка",
+        "last_attempt_mailing": "Дата и время последней попытки",
+        "status_attempt": "Статус попытки",
+        "response": "Ответ сервера",
+        "successfully": "Успешно",
+        "not_successfully": "Не успешно",
+        "back": "Назад",
+    }

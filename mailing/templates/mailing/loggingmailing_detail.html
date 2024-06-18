@@ -12,24 +12,24 @@
                 <div class="card-body">
                     <table class="table table-bordered ">
                         <tr>
-                            <th>Рассылка</th>
-                            <th>Дата и время последней попытки</th>
-                            <th>Статус попытки</th>
-                            <th>Ответ сервера</th>
+                            <th>{{ mailing }}</th>
+                            <th>{{ last_attempt_mailing }}</th>
+                            <th>{{ status_attempt }}</th>
+                            <th>{{ response }}</th>
                         </tr>
                         <tr>
                             <td>{{ object.mailing.name }}</td>
                             <td>{{ object.last_attempt_mailing }}</td>
                             {% if object.status_attempt %}
-                                <td>Успешно</td>
+                                <td>{{ successfully }}</td>
                             {% else %}
-                                <td>Не успешно</td>
+                                <td>{{ not_successfully }}</td>
                             {% endif %}
                             <td>{{ object.response }}</td>
                     </table>
                     <a class="btn btn--sm btn-outline-secondary"
                        href="{% url 'mailing:logging_mailing-list' %}"
-                       role="button">Назад
+                       role="button">{{ back }}
                     </a>
                 </div>
             </div>

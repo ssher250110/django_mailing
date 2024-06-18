@@ -1,11 +1,11 @@
 {% extends "mailing/base.html" %}
 
 {% block title_page %}
-    Список попыток рассылок
+    {{ title_list_logging_mailing }}
 {% endblock %}
 
 {% block title %}
-    <h2>Список попыток рассылок</h2>
+    <h2>{{ title_list_logging_mailing }}</h2>
 {% endblock %}
 
 {% block content %}
@@ -15,20 +15,20 @@
                 <div class="card-body">
                     <table class="table table-bordered ">
                         <tr>
-                            <th>Рассылка</th>
-                            <th>Статус попытки</th>
+                            <th>{{ mailing }}</th>
+                            <th>{{ status_attempt }}</th>
                         </tr>
                         {% for object in object_list %}
                             <tr>
                             <td>{{ object.mailing }}</td>
                             {% if object.status_attempt %}
-                                <td>Успешно</td>
+                                <td>{{ successfully }}</td>
                             {% else %}
-                                <td>Не успешно</td>
+                                <td>{{ not_successfully }}</td>
                             {% endif %}
                             <td><a class="btn btn--sm btn-secondary"
                                    href="{% url 'mailing:logging_mailing-detail' object.id %}"
-                                   role="button">Посмотреть
+                                   role="button">{{ view }}
                             </a></td>
                         {% endfor %}
                     </table>
