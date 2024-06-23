@@ -45,8 +45,8 @@ class Mailing(models.Model):
     ]
     STATUS = [
         ("создана", "создана"),
-        ("завершена", "завершена"),
         ("запущена", "запущена"),
+        ("завершена", "завершена"),
     ]
     name = models.CharField(unique=True, max_length=255, verbose_name="Название рассылки")
     clients = models.ManyToManyField("Client", verbose_name="Клиенты")
