@@ -46,7 +46,6 @@ class Mailing(models.Model):
     STATUS = [
         ("создана", "создана"),
         ("запущена", "запущена"),
-        ("завершена", "завершена"),
     ]
     name = models.CharField(unique=True, max_length=255, verbose_name="Название рассылки")
     clients = models.ManyToManyField("Client", verbose_name="Клиенты")
@@ -55,6 +54,7 @@ class Mailing(models.Model):
     next_mailing = models.DateTimeField(**NULLABLE, verbose_name="Дата и время следующей отправки рассылки")
     period = models.CharField(max_length=15, choices=PERIOD, verbose_name="Периодичность рассылки")
     status_mailing = models.CharField(default="создана", max_length=10, choices=STATUS, verbose_name="Статус рассылки")
+    is_active = models.BooleanField(default=True, verbose_name="Активная рассылка")
 
     def __str__(self):
         return f"{self.name}, start: {self.start_mailing}, status:{self.status_mailing}"
