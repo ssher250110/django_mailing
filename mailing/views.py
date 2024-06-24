@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView, TemplateView
 
@@ -9,7 +10,7 @@ class InfoView(TemplateView):
     template_name = "mailing/info_view.html"
 
 
-class ClientCreateView(CreateView):
+class ClientCreateView(LoginRequiredMixin, CreateView):
     model = Client
     form_class = ClientForm
     success_url = reverse_lazy("mailing:client-list")
@@ -18,8 +19,14 @@ class ClientCreateView(CreateView):
         "back": "Назад",
     }
 
+    def form_valid(self, form):
+        client = form.save(commit=False)
+        client.owner = self.request.user
+        client.save()
+        return super().form_valid(form)
 
-class ClientListView(ListView):
+
+class ClientListView(LoginRequiredMixin, ListView):
     model = Client
     extra_context = {
         "title_page": "Список клиентов",
@@ -29,7 +36,7 @@ class ClientListView(ListView):
     }
 
 
-class ClientDetailView(DetailView):
+class ClientDetailView(LoginRequiredMixin, DetailView):
     model = Client
     extra_context = {
         "email": "Почта",
@@ -43,7 +50,7 @@ class ClientDetailView(DetailView):
     }
 
 
-class ClientUpdateView(UpdateView):
+class ClientUpdateView(LoginRequiredMixin, UpdateView):
     model = Client
     form_class = ClientForm
     extra_context = {
@@ -55,7 +62,7 @@ class ClientUpdateView(UpdateView):
         return reverse("mailing:client-detail", args=[self.kwargs.get('pk')])
 
 
-class ClientDeleteView(DeleteView):
+class ClientDeleteView(LoginRequiredMixin, DeleteView):
     model = Client
     success_url = reverse_lazy("mailing:client-list")
     extra_context = {
@@ -66,7 +73,7 @@ class ClientDeleteView(DeleteView):
     }
 
 
-class MessageCreateView(CreateView):
+class MessageCreateView(LoginRequiredMixin, CreateView):
     model = Message
     form_class = MessageForm
     success_url = reverse_lazy("mailing:message-list")
@@ -75,8 +82,14 @@ class MessageCreateView(CreateView):
         "back": "Назад",
     }
 
+    def form_valid(self, form):
+        message = form.save(commit=False)
+        message.owner = self.request.user
+        message.save()
+        return super().form_valid(form)
 
-class MessageListView(ListView):
+
+class MessageListView(LoginRequiredMixin, ListView):
     model = Message
     extra_context = {
         "title_page_message_list": "Список писем",
@@ -85,7 +98,7 @@ class MessageListView(ListView):
     }
 
 
-class MessageDetailView(DetailView):
+class MessageDetailView(LoginRequiredMixin, DetailView):
     model = Message
     extra_context = {
         "subject_message": "Тема сообщения",
@@ -96,7 +109,7 @@ class MessageDetailView(DetailView):
     }
 
 
-class MessageUpdateView(UpdateView):
+class MessageUpdateView(LoginRequiredMixin, UpdateView):
     model = Message
     form_class = MessageForm
     extra_context = {
@@ -108,7 +121,7 @@ class MessageUpdateView(UpdateView):
         return reverse("mailing:message-detail", args=[self.kwargs.get('pk')])
 
 
-class MessageDeleteView(DeleteView):
+class MessageDeleteView(LoginRequiredMixin, DeleteView):
     model = Message
     success_url = reverse_lazy("mailing:message-list")
     extra_context = {
@@ -119,7 +132,7 @@ class MessageDeleteView(DeleteView):
     }
 
 
-class MailingCreateView(CreateView):
+class MailingCreateView(LoginRequiredMixin, CreateView):
     model = Mailing
     form_class = MailingForm
     success_url = reverse_lazy("mailing:mailing-list")
@@ -128,8 +141,14 @@ class MailingCreateView(CreateView):
         "back": "Назад",
     }
 
+    def form_valid(self, form):
+        mailing = form.save(commit=False)
+        mailing.owner = self.request.user
+        mailing.save()
+        return super().form_valid(form)
 
-class MailingListView(ListView):
+
+class MailingListView(LoginRequiredMixin, ListView):
     model = Mailing
     extra_context = {
         "title": "Список рассылок",
@@ -139,7 +158,7 @@ class MailingListView(ListView):
     }
 
 
-class MailingDetailView(DetailView):
+class MailingDetailView(LoginRequiredMixin, DetailView):
     model = Mailing
     extra_context = {
         "name": "Название рассылки",
@@ -154,7 +173,7 @@ class MailingDetailView(DetailView):
     }
 
 
-class MailingUpdateView(UpdateView):
+class MailingUpdateView(LoginRequiredMixin, UpdateView):
     model = Mailing
     form_class = MailingForm
     extra_context = {
@@ -166,7 +185,7 @@ class MailingUpdateView(UpdateView):
         return reverse("mailing:mailing-detail", args=[self.kwargs.get('pk')])
 
 
-class MailingDeleteView(DeleteView):
+class MailingDeleteView(LoginRequiredMixin, DeleteView):
     model = Mailing
     success_url = reverse_lazy("mailing:mailing-list")
     extra_context = {
@@ -181,7 +200,7 @@ class LoggingMailingCreateView(CreateView):
     model = LoggingMailing
 
 
-class LoggingMailingListView(ListView):
+class LoggingMailingListView(LoginRequiredMixin, ListView):
     model = LoggingMailing
     extra_context = {
         "title_list_logging_mailing": "Список попыток рассылок",
