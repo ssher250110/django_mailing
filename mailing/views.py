@@ -1,14 +1,39 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404
 from django.urls import reverse_lazy, reverse
-from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView, TemplateView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
+from blog.models import Blog
 from mailing.forms import ClientForm, MessageForm, MailingForm
 from mailing.models import Client, Message, Mailing, LoggingMailing
 
 
-class InfoView(LoginRequiredMixin, TemplateView):
+class InfoListView(ListView):
+    model = Blog
     template_name = "mailing/info_view.html"
+    extra_context = {
+        "main_page": "Главная страница",
+        "mailing_management_service": "Сервис управления рассылками",
+        "count": "Количество рассылок",
+        "is_active": "Количество активных рассылок",
+        "clients_unique": "Количество уникальных клиентов",
+        "three_random_blog_articles": "Три случайные статьи из блога",
+        "title": "Заголовок",
+        "description": "Содержимое",
+        "view_count": "Количество просмотров",
+
+    }
+
+    def get_queryset(self, *args, **kwargs):
+        queryset = super().get_queryset(*args, **kwargs)
+        return queryset[:3]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["mailing_count"] = Mailing.objects.all().count()
+        context["mailing_is_active"] = Mailing.objects.filter(is_active=True).count()
+        context["mailing_clients_unique"] = Mailing.objects.distinct().count()
+        return context
 
 
 class ClientCreateView(LoginRequiredMixin, CreateView):

@@ -4,12 +4,12 @@ from mailing.apps import MailingConfig
 from mailing.views import ClientListView, ClientCreateView, ClientDetailView, ClientUpdateView, ClientDeleteView, \
     MessageCreateView, MessageListView, MessageDetailView, MessageUpdateView, MessageDeleteView, \
     MailingCreateView, MailingListView, MailingDetailView, MailingUpdateView, MailingDeleteView, \
-    LoggingMailingCreateView, LoggingMailingListView, LoggingMailingDetailView, InfoView
+    InfoListView
 
 app_name = MailingConfig.name
 
 urlpatterns = [
-    path("", InfoView.as_view(), name="info-view"),
+    path("", InfoListView.as_view(), name="info-list"),
 
     path("client/create/", ClientCreateView.as_view(), name="client-create"),
     path("client/", ClientListView.as_view(), name="client-list"),

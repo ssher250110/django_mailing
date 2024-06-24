@@ -1,13 +1,46 @@
 {% extends "mailing/base.html" %}
 
 {% block title_page %}
-    Главная страница
+    {{ main_page }}
 {% endblock %}
 
 {% block title %}
-    <h3>Сервис управления рассылками</h3>
+    <h3>{{ mailing_management_service }}</h3>
 {% endblock %}
 
 {% block content %}
-    <h4>hello info</h4>
+    <div class="container text-center col-6">
+        <div class="col align-self-center">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>{{ count }}</th>
+                            <th>{{ is_active }}</th>
+                            <th>{{ clients_unique }}</th>
+                        </tr>
+                        <tr>
+                            <td>{{ mailing_count }}</td>
+                            <td>{{ mailing_is_active }}</td>
+                            <td>{{ mailing_clients_unique }}</td>
+                        </tr>
+                    </table>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>{{ title }}</th>
+                            <th>{{ description }}</th>
+                            <th>{{ view_count }}</th>
+                        </tr>
+                        {% for object in object_list %}
+                        <tr>
+                            <td>{{ object.title }}</td>
+                            <td>{{ object.description }}</td>
+                            <td>{{ object.view_count }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
