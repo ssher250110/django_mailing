@@ -14,7 +14,7 @@ class Command(BaseCommand):
 
         scheduler.add_job(
             filters_and_sorted_mailing_by_condition,
-            trigger=CronTrigger(second="*/10"),
+            trigger=CronTrigger(hour="1"),
             id="filters_and_sorted_mailing_by_condition",
             max_instances=1,
             replace_existing=True,
