@@ -7,7 +7,7 @@ from mailing.forms import ClientForm, MessageForm, MailingForm
 from mailing.models import Client, Message, Mailing, LoggingMailing
 
 
-class InfoView(TemplateView):
+class InfoView(LoginRequiredMixin, TemplateView):
     template_name = "mailing/info_view.html"
 
 

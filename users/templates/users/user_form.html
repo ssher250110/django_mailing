@@ -5,23 +5,19 @@
 {% endblock %}
 
 {% block content %}
-    <div class="album py-5 bg-body-tertiary">
-        <div class="container">
-            <form method="post" enctype="multipart/form-data">
-                <div class="row row-cols-1 row-cols-sm-2 row-cols g-2">
-                    <div class="col">
-                        <div class="card shadow-sm">
-                            <div class="card-body">
-                                {% csrf_token %}
-                                {{ form.as_p }}
-                                <button type="submit" class="btn btn-outline-success">
-                                    Регистрация
-                                </button>
-                            </div>
-                        </div>
+    <div class="container text-center col-5">
+        <form method="post" enctype="multipart/form-data">
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-outline-success">
+                            Регистрация
+                        </button>
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 {% endblock %}
