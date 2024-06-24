@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import Http404
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView, TemplateView
 
@@ -58,6 +59,13 @@ class ClientDetailView(LoginRequiredMixin, DetailView):
         "delete": "Удалить",
     }
 
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        user = self.request.user
+        if not user.is_superuser and self.object.owner != user:
+            raise Http404("Доступ запрещен")
+        return self.object
+
 
 class ClientUpdateView(LoginRequiredMixin, UpdateView):
     model = Client
@@ -70,6 +78,13 @@ class ClientUpdateView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse("mailing:client-detail", args=[self.kwargs.get('pk')])
 
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        user = self.request.user
+        if not user.is_superuser and self.object.owner != user:
+            raise Http404("Доступ запрещен")
+        return self.object
+
 
 class ClientDeleteView(LoginRequiredMixin, DeleteView):
     model = Client
@@ -80,6 +95,13 @@ class ClientDeleteView(LoginRequiredMixin, DeleteView):
         "delete": "Удалить",
         "cancel": "Отмена",
     }
+
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        user = self.request.user
+        if not user.is_superuser and self.object.owner != user:
+            raise Http404("Доступ запрещен")
+        return self.object
 
 
 class MessageCreateView(LoginRequiredMixin, CreateView):
@@ -126,6 +148,13 @@ class MessageDetailView(LoginRequiredMixin, DetailView):
         "delete": "Удалить",
     }
 
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        user = self.request.user
+        if not user.is_superuser and self.object.owner != user:
+            raise Http404("Доступ запрещен")
+        return self.object
+
 
 class MessageUpdateView(LoginRequiredMixin, UpdateView):
     model = Message
@@ -138,6 +167,13 @@ class MessageUpdateView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse("mailing:message-detail", args=[self.kwargs.get('pk')])
 
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        user = self.request.user
+        if not user.is_superuser and self.object.owner != user:
+            raise Http404("Доступ запрещен")
+        return self.object
+
 
 class MessageDeleteView(LoginRequiredMixin, DeleteView):
     model = Message
@@ -148,6 +184,13 @@ class MessageDeleteView(LoginRequiredMixin, DeleteView):
         "delete": "Удалить",
         "cancel": "Отмена",
     }
+
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        user = self.request.user
+        if not user.is_superuser and self.object.owner != user:
+            raise Http404("Доступ запрещен")
+        return self.object
 
 
 class MailingCreateView(LoginRequiredMixin, CreateView):
@@ -199,6 +242,13 @@ class MailingDetailView(LoginRequiredMixin, DetailView):
         "delete": "Удалить",
     }
 
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        user = self.request.user
+        if not user.is_superuser and self.object.owner != user:
+            raise Http404("Доступ запрещен")
+        return self.object
+
 
 class MailingUpdateView(LoginRequiredMixin, UpdateView):
     model = Mailing
@@ -211,6 +261,13 @@ class MailingUpdateView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse("mailing:mailing-detail", args=[self.kwargs.get('pk')])
 
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        user = self.request.user
+        if not user.is_superuser and self.object.owner != user:
+            raise Http404("Доступ запрещен")
+        return self.object
+
 
 class MailingDeleteView(LoginRequiredMixin, DeleteView):
     model = Mailing
@@ -221,6 +278,13 @@ class MailingDeleteView(LoginRequiredMixin, DeleteView):
         "delete": "Удалить",
         "cancel": "Отмена",
     }
+
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        user = self.request.user
+        if not user.is_superuser and self.object.owner != user:
+            raise Http404("Доступ запрещен")
+        return self.object
 
 
 class LoggingMailingCreateView(CreateView):
