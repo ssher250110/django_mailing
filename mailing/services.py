@@ -9,12 +9,6 @@ from django.core.mail import send_mail
 from mailing.models import LoggingMailing, Mailing
 
 
-def start():
-    scheduler = BackgroundScheduler()
-    scheduler.add_job(filters_and_sorted_mailing_by_condition, 'interval', seconds=10)
-    scheduler.start()
-
-
 def send_mailing(mailing):
     try:
         response_server = send_mail(
@@ -48,6 +42,7 @@ def filters_and_sorted_mailing_by_condition():
                 if mailing.period == "раз в месяц":
                     if (current_datetime - logging_mailing.last_attempt_mailing).days >= 30:
                         send_mailing(mailing)
-        send_mailing(mailing)
-        mailing.status_mailing = "запущена"
-        mailing.save()
+        else:
+            send_mailing(mailing)
+            mailing.status_mailing = "запущена"
+            mailing.save()
