@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
@@ -10,6 +11,7 @@ class Client(models.Model):
     first_name = models.CharField(max_length=50, **NULLABLE, verbose_name="Имя")
     middle_name = models.CharField(max_length=50, **NULLABLE, verbose_name="Отчество")
     comment = models.TextField(**NULLABLE, verbose_name="Комментарий")
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE, verbose_name='Владелец')
 
     def __str__(self):
         return (f"Почта: {self.email} "
@@ -27,6 +29,7 @@ class Client(models.Model):
 class Message(models.Model):
     subject = models.CharField(max_length=255, verbose_name="Тема сообщения")
     body = models.TextField(**NULLABLE, verbose_name="Тело сообщения")
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE, verbose_name='Владелец')
 
     def __str__(self):
         return f"{self.subject}: {self.body}"
@@ -54,6 +57,7 @@ class Mailing(models.Model):
     period = models.CharField(max_length=15, choices=PERIOD, verbose_name="Периодичность рассылки")
     status_mailing = models.CharField(default="создана", max_length=10, choices=STATUS, verbose_name="Статус рассылки")
     is_active = models.BooleanField(default=True, verbose_name="Активная рассылка")
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE, verbose_name='Владелец')
 
     def __str__(self):
         return f"{self.name}, start: {self.start_mailing}, status:{self.status_mailing}"
