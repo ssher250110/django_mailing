@@ -1,21 +1,18 @@
-# from datetime import datetime
-#
-# import pytz
-# from apscheduler.schedulers.background import BackgroundScheduler
-# from django.conf import settings
-# from django.core.mail import send_mail
-#
-# from mailing.models import Mailing, LoggingMailing
-#
-#
 import smtplib
 from datetime import datetime
 
 import pytz
+from apscheduler.schedulers.background import BackgroundScheduler
 from django.conf import settings
 from django.core.mail import send_mail
 
 from mailing.models import LoggingMailing, Mailing
+
+
+def start():
+    scheduler = BackgroundScheduler()
+    scheduler.add_job(filters_and_sorted_mailing_by_condition, 'interval', seconds=10)
+    scheduler.start()
 
 
 def send_mailing(mailing):
@@ -40,7 +37,7 @@ def filters_and_sorted_mailing_by_condition():
     mailings = Mailing.objects.filter(is_active=True).filter(status_mailing__in=["создана", "запущена"])
     for mailing in mailings:
         logging_mailing = LoggingMailing.objects.filter(mailing=mailing).order_by("-last_attempt_mailing").first()
-        if logging_mailing.exists():
+        if logging_mailing:
             if current_datetime > logging_mailing.last_attempt_mailing:
                 if mailing.period == "раз в день":
                     if (current_datetime - logging_mailing.last_attempt_mailing).days >= 1:
