@@ -35,6 +35,15 @@ class ClientListView(LoginRequiredMixin, ListView):
         "view": "Посмотреть",
     }
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        user = self.request.user
+        if user.is_superuser:
+            queryset = queryset
+        else:
+            queryset = queryset.filter(owner=user)
+        return queryset
+
 
 class ClientDetailView(LoginRequiredMixin, DetailView):
     model = Client
@@ -97,6 +106,15 @@ class MessageListView(LoginRequiredMixin, ListView):
         "view": "Посмотреть",
     }
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        user = self.request.user
+        if user.is_superuser:
+            queryset = queryset
+        else:
+            queryset = queryset.filter(owner=user)
+        return queryset
+
 
 class MessageDetailView(LoginRequiredMixin, DetailView):
     model = Message
@@ -157,6 +175,15 @@ class MailingListView(LoginRequiredMixin, ListView):
         "view": "Посмотреть",
     }
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        user = self.request.user
+        if user.is_superuser:
+            queryset = queryset
+        else:
+            queryset = queryset.filter(owner=user)
+        return queryset
+
 
 class MailingDetailView(LoginRequiredMixin, DetailView):
     model = Mailing
@@ -200,26 +227,9 @@ class LoggingMailingCreateView(CreateView):
     model = LoggingMailing
 
 
-class LoggingMailingListView(LoginRequiredMixin, ListView):
+class LoggingMailingListView(ListView):
     model = LoggingMailing
-    extra_context = {
-        "title_list_logging_mailing": "Список попыток рассылок",
-        "mailing": "Рассылка",
-        "status_attempt": "Статус попытки",
-        "successfully": "Успешно",
-        "not_successfully": "Не успешно",
-        "view": "Посмотреть",
-    }
 
 
 class LoggingMailingDetailView(DetailView):
     model = LoggingMailing
-    extra_context = {
-        "mailing": "Рассылка",
-        "last_attempt_mailing": "Дата и время последней попытки",
-        "status_attempt": "Статус попытки",
-        "response": "Ответ сервера",
-        "successfully": "Успешно",
-        "not_successfully": "Не успешно",
-        "back": "Назад",
-    }
