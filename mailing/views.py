@@ -107,9 +107,9 @@ class ClientUpdateView(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
         user = self.request.user
-        if not user.is_superuser and self.object.owner != user:
-            raise Http404("Доступ запрещен")
-        return self.object
+        if user.is_superuser and self.object.owner == user:
+            return self.object
+        raise PermissionDenied
 
 
 class ClientDeleteView(LoginRequiredMixin, DeleteView):
@@ -125,9 +125,9 @@ class ClientDeleteView(LoginRequiredMixin, DeleteView):
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
         user = self.request.user
-        if not user.is_superuser and self.object.owner != user:
-            raise Http404("Доступ запрещен")
-        return self.object
+        if user.is_superuser and self.object.owner == user:
+            return self.object
+        raise PermissionDenied
 
 
 class MessageCreateView(LoginRequiredMixin, CreateView):
@@ -196,9 +196,9 @@ class MessageUpdateView(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
         user = self.request.user
-        if not user.is_superuser and self.object.owner != user:
-            raise Http404("Доступ запрещен")
-        return self.object
+        if user.is_superuser and self.object.owner == user:
+            return self.object
+        raise PermissionDenied
 
 
 class MessageDeleteView(LoginRequiredMixin, DeleteView):
@@ -214,9 +214,9 @@ class MessageDeleteView(LoginRequiredMixin, DeleteView):
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
         user = self.request.user
-        if not user.is_superuser and self.object.owner != user:
-            raise Http404("Доступ запрещен")
-        return self.object
+        if user.is_superuser and self.object.owner == user:
+            return self.object
+        raise PermissionDenied
 
 
 class MailingCreateView(LoginRequiredMixin, CreateView):
@@ -290,9 +290,9 @@ class MailingUpdateView(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
         user = self.request.user
-        if not user.is_superuser and self.object.owner != user:
-            raise Http404("Доступ запрещен")
-        return self.object
+        if user.is_superuser and self.object.owner == user:
+            return self.object
+        raise PermissionDenied
 
 
 class MailingDeleteView(LoginRequiredMixin, DeleteView):
@@ -308,9 +308,9 @@ class MailingDeleteView(LoginRequiredMixin, DeleteView):
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
         user = self.request.user
-        if not user.is_superuser and self.object.owner != user:
-            raise Http404("Доступ запрещен")
-        return self.object
+        if user.is_superuser and self.object.owner == user:
+            return self.object
+        raise PermissionDenied
 
 
 class LoggingMailingCreateView(CreateView):
