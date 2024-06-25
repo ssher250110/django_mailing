@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import PermissionDenied
 from django.http import Http404
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
@@ -87,9 +88,9 @@ class ClientDetailView(LoginRequiredMixin, DetailView):
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
         user = self.request.user
-        if not user.is_superuser and self.object.owner != user:
-            raise Http404("Доступ запрещен")
-        return self.object
+        if user.is_superuser and self.object.owner == user:
+            return self.object
+        raise PermissionDenied
 
 
 class ClientUpdateView(LoginRequiredMixin, UpdateView):
@@ -176,9 +177,9 @@ class MessageDetailView(LoginRequiredMixin, DetailView):
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
         user = self.request.user
-        if not user.is_superuser and self.object.owner != user:
-            raise Http404("Доступ запрещен")
-        return self.object
+        if user.is_superuser and self.object.owner == user:
+            return self.object
+        raise PermissionDenied
 
 
 class MessageUpdateView(LoginRequiredMixin, UpdateView):
@@ -270,9 +271,9 @@ class MailingDetailView(LoginRequiredMixin, DetailView):
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
         user = self.request.user
-        if not user.is_superuser and self.object.owner != user:
-            raise Http404("Доступ запрещен")
-        return self.object
+        if user.is_superuser and self.object.owner == user:
+            return self.object
+        raise PermissionDenied
 
 
 class MailingUpdateView(LoginRequiredMixin, UpdateView):
