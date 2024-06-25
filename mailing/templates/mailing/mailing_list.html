@@ -27,12 +27,10 @@
                             <tr>
                             <td>{{ object.name }}</td>
                             <td>{{ object.status_mailing }}</td>
-                            {% if perms.mailing.view_mailing %}
                                 <td><a class="btn btn--sm btn-secondary"
                                        href="{% url 'mailing:mailing-detail' object.id %}"
                                        role="button">{{ view }}
                                 </a></td>
-                            {% endif %}
                         {% endfor %}
                     </table>
                 </div>

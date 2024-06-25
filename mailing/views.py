@@ -87,7 +87,7 @@ class ClientDetailView(LoginRequiredMixin, DetailView):
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
         user = self.request.user
-        if user.is_superuser and self.object.owner == user:
+        if user.is_superuser or self.object.owner == user:
             return self.object
         raise PermissionDenied
 
@@ -106,7 +106,7 @@ class ClientUpdateView(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
         user = self.request.user
-        if user.is_superuser and self.object.owner == user:
+        if user.is_superuser or self.object.owner == user:
             return self.object
         raise PermissionDenied
 
@@ -124,7 +124,7 @@ class ClientDeleteView(LoginRequiredMixin, DeleteView):
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
         user = self.request.user
-        if user.is_superuser and self.object.owner == user:
+        if user.is_superuser or self.object.owner == user:
             return self.object
         raise PermissionDenied
 
@@ -176,7 +176,7 @@ class MessageDetailView(LoginRequiredMixin, DetailView):
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
         user = self.request.user
-        if user.is_superuser and self.object.owner == user:
+        if user.is_superuser or self.object.owner == user:
             return self.object
         raise PermissionDenied
 
@@ -195,7 +195,7 @@ class MessageUpdateView(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
         user = self.request.user
-        if user.is_superuser and self.object.owner == user:
+        if user.is_superuser or self.object.owner == user:
             return self.object
         raise PermissionDenied
 
@@ -213,7 +213,7 @@ class MessageDeleteView(LoginRequiredMixin, DeleteView):
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
         user = self.request.user
-        if user.is_superuser and self.object.owner == user:
+        if user.is_superuser or self.object.owner == user:
             return self.object
         raise PermissionDenied
 
@@ -270,7 +270,7 @@ class MailingDetailView(LoginRequiredMixin, DetailView):
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
         user = self.request.user
-        if user.is_superuser and self.object.owner == user:
+        if user.is_superuser or self.object.owner == user or user.groups.filter(name="manager"):
             return self.object
         raise PermissionDenied
 
@@ -289,7 +289,7 @@ class MailingUpdateView(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
         user = self.request.user
-        if user.is_superuser and self.object.owner == user:
+        if user.is_superuser or self.object.owner == user:
             return self.object
         raise PermissionDenied
 
@@ -307,7 +307,7 @@ class MailingDeleteView(LoginRequiredMixin, DeleteView):
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
         user = self.request.user
-        if user.is_superuser and self.object.owner == user:
+        if user.is_superuser or self.object.owner == user:
             return self.object
         raise PermissionDenied
 
