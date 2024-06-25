@@ -20,6 +20,7 @@ class BlogDetailView(DetailView):
         "Not_body": "Содержимое отсутствует",
         "Data_creation": "Дата публикации",
         "Data_count_view": "Количество просмотров",
+        "Back": "Назад",
     }
 
     def get_object(self, queryset=None):
