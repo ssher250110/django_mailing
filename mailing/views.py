@@ -9,7 +9,7 @@ from mailing.forms import ClientForm, MessageForm, MailingForm
 from mailing.models import Client, Message, Mailing, LoggingMailing
 
 
-class InfoListView(ListView):
+class InfoListView(LoginRequiredMixin, ListView):
     model = Blog
     template_name = "mailing/info_view.html"
     extra_context = {
