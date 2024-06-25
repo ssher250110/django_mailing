@@ -246,7 +246,7 @@ class MailingListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         user = self.request.user
-        if user.is_superuser:
+        if user.is_superuser or user.groups.filter(name="manager"):
             queryset = queryset
         else:
             queryset = queryset.filter(owner=user)
