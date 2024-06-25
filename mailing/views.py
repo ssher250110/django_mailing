@@ -1,11 +1,13 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
 from blog.models import Blog
 from mailing.forms import ClientForm, MessageForm, MailingForm
 from mailing.models import Client, Message, Mailing, LoggingMailing
+from users.models import User
 
 
 class InfoListView(LoginRequiredMixin, ListView):
@@ -322,3 +324,33 @@ class LoggingMailingListView(ListView):
 
 class LoggingMailingDetailView(DetailView):
     model = LoggingMailing
+
+
+class ManagerListView(LoginRequiredMixin, ListView):
+    model = User
+    template_name = "mailing/manager_list.html"
+    extra_context = {
+        "user_page": "Список пользователей",
+        "user_list": "Список пользователей",
+        "email": "Почта",
+        "is_active": "Активный",
+    }
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        user = self.request.user
+        if user.is_superuser:
+            queryset = queryset
+        else:
+            queryset = queryset.filter(is_staff=False)
+        return queryset
+
+
+def switcher_user_active(request, pk):
+    user_active = get_object_or_404(User, pk=pk)
+    if user_active.is_active:
+        user_active.is_active = False
+    else:
+        user_active.is_active = True
+    user_active.save()
+    return redirect(reverse("mailing:manager"))
