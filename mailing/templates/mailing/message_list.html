@@ -13,7 +13,7 @@
         <div class="col align-self-center">
             <div class="card">
                 <div class="card-body">
-                    {% if perms.mailing.add_message %}
+                    {% if not user.is_staff %}
                         <a class="btn btn-info mb-3"
                            href="{% url 'mailing:message-create' %}" role="button">Добавить письмо
                         </a>
