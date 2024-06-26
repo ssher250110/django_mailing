@@ -28,17 +28,13 @@
                 <a class="btn btn--sm btn-outline-secondary"
                    href="{% url "mailing:mailing-list" %}"
                    role="button">{{ back }}</a>
-                {% if perms.mailing.update_mailing %}
-                    <a class="btn btn--sm btn-outline-secondary"
-                       href="{% url 'mailing:mailing-update' object.id %}"
-                       role="button">{{ update }}
-                    </a>
-                {% endif %}
-                {% if perms.mailing.delete_mailing %}
-                    <a class="btn btn--sm btn-outline-secondary"
-                       href="{% url 'mailing:mailing-delete' object.id %}"
-                       role="button">{{ delete }}</a>
-                {% endif %}
+                <a class="btn btn--sm btn-outline-secondary"
+                   href="{% url 'mailing:mailing-update' object.id %}"
+                   role="button">{{ update }}
+                </a>
+                <a class="btn btn--sm btn-outline-secondary"
+                   href="{% url 'mailing:mailing-delete' object.id %}"
+                   role="button">{{ delete }}</a>
             </div>
         </div>
     </div>
