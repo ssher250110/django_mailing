@@ -6,19 +6,19 @@ from mailing.models import Client, Message, Mailing, LoggingMailing
 
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ("pk", "email", "last_name", "first_name", "middle_name", "comment",)
+    list_display = ("pk", "email", "last_name", "first_name", "middle_name", "comment", "owner",)
     search_fields = ("email", "last_name", "comment",)
 
 
 @admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ("pk", "subject", "body",)
+    list_display = ("pk", "subject", "body", "owner",)
     search_fields = ("subject",)
 
 
 @admin.register(Mailing)
 class MailingAdmin(admin.ModelAdmin):
-    list_display = ("pk", "name", "get_clients", "message", "start_mailing", "period", "status_mailing",)
+    list_display = ("pk", "name", "get_clients", "message", "start_mailing", "period", "status_mailing", "owner",)
     list_filter = ("name", "start_mailing", "period", "status_mailing",)
     search_fields = ("name", "start_mailing", "period", "status_mailing",)
 
