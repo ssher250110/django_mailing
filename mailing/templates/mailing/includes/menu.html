@@ -9,7 +9,7 @@
                     <li class="nav-item"><a class="nav-link" href="{% url 'mailing:client-list' %}">Клиенты</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'mailing:message-list' %}">Письма</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'blog:blog' %}">Блог</a></li>
-                    {% if perms.users.view_user %}
+                    {% if user.is_staff or user.is_superuser %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'mailing:manager' %}">Пользователи</a>
                         </li>
                     {% endif %}
