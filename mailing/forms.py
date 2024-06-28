@@ -40,6 +40,7 @@ class MailingUpdateForm(StyleFormMixin, forms.ModelForm):
     def __init__(self, owner, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['clients'].queryset = Client.objects.filter(owner=owner)
+        self.fields['message'].queryset = Message.objects.filter(owner=owner)
 
     class Meta:
         model = Mailing
