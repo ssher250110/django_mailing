@@ -1,41 +1,37 @@
 {% extends "mailing/base.html" %}
 
 {% block title_page %}
-    {{ object.email }}
+{{ object.email }}
 {% endblock %}
 
 {% block content %}
-    <div class="container text-center col-8">
-        <div class="col align-self-center">
-            <div class="card">
-                <div class="card-body">
-                    <table class="table table-bordered ">
-                        <tr>
-                            <th>{{ email }}</th>
-                            <th>{{ last_name }}</th>
-                            <th>{{ first_name }}</th>
-                            <th>{{ middle_name }}</th>
-                            <th>{{ comment }}</th>
-                        </tr>
-                        <tr>
-                            <td>{{ object.email }}</td>
-                            <td>{{ object.last_name }}</td>
-                            <td>{{ object.first_name }}</td>
-                            <td>{{ object.middle_name }}</td>
-                            <td>{{ object.comment }}</td>
-                    </table>
-                    <a class="btn btn--sm btn-outline-secondary"
-                       href="{% url "mailing:client-list" %}"
-                       role="button">{{ back }}</a>
-                    <a class="btn btn--sm btn-outline-secondary"
-                       href="{% url "mailing:client-update" object.id %}"
-                       role="button">{{ update }}
-                    </a>
-                    <a class="btn btn--sm btn-outline-secondary"
-                       href="{% url "mailing:client-delete" object.id %}"
-                       role="button">{{ delete }}</a>
-                </div>
-            </div>
-        </div>
+<div class="container text-center col-8">
+    <div class="col align-self-center">
+        <table class="table table-bordered ">
+            <tr>
+                <th>{{ email }}</th>
+                <th>{{ last_name }}</th>
+                <th>{{ first_name }}</th>
+                <th>{{ middle_name }}</th>
+                <th>{{ comment }}</th>
+            </tr>
+            <tr>
+                <td>{{ object.email }}</td>
+                <td>{{ object.last_name }}</td>
+                <td>{{ object.first_name }}</td>
+                <td>{{ object.middle_name }}</td>
+                <td>{{ object.comment }}</td>
+        </table>
+        <a class="btn btn--sm btn-outline-secondary"
+           href="{% url "mailing:client-list" %}"
+        role="button">{{ back }}</a>
+        <a class="btn btn--sm btn-outline-secondary"
+           href="{% url "mailing:client-update" object.id %}"
+        role="button">{{ update }}
+        </a>
+        <a class="btn btn--sm btn-outline-secondary"
+           href="{% url "mailing:client-delete" object.id %}"
+        role="button">{{ delete }}</a>
     </div>
+</div>
 {% endblock %}
