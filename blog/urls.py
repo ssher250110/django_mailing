@@ -7,6 +7,6 @@ from blog.views import BlogListView, BlogDetailView
 app_name = BlogConfig.name
 
 urlpatterns = [
-    path('blog', cache_page(60)(BlogListView.as_view()), name='blog'),
-    path('blog/<int:pk>/', cache_page(60)(BlogDetailView.as_view()), name='blog-info'),
+    path("blog", cache_page(60)(BlogListView.as_view()), name="blog"),
+    path("blog/<int:pk>/", cache_page(60)(BlogDetailView.as_view()), name="blog-info"),
 ]

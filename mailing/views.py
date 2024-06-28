@@ -11,7 +11,7 @@ from users.models import User
 
 
 class InfoListView(LoginRequiredMixin, ListView):
-    """Контроллер отображает на главной страницы, количество рассылок, количество активных рассылок,
+    """Контроллер отображает на главной странице, количество рассылок, количество активных рассылок,
     количество уникальных клиентов и три случайные статьи из блога"""
     model = Blog
     template_name = "mailing/info_view.html"
@@ -250,7 +250,7 @@ class MailingCreateView(LoginRequiredMixin, CreateView):
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['owner'] = self.request.user
+        kwargs["owner"] = self.request.user
         return kwargs
 
 
@@ -322,7 +322,7 @@ class MailingUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['owner'] = self.request.user
+        kwargs["owner"] = self.request.user
         return kwargs
 
 

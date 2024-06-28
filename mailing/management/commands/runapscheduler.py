@@ -19,6 +19,7 @@ def delete_old_job_executions(max_age=604_800):
 
 
 class Command(BaseCommand):
+    """Запуск планировщика"""
     def handle(self, *args, **options):
         scheduler = BlockingScheduler(timezone=settings.TIME_ZONE)
         scheduler.add_jobstore(DjangoJobStore(), "default")

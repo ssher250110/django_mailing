@@ -1,9 +1,10 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView
 
 from blog.models import Blog
 
 
-class BlogListView(ListView):
+class BlogListView(LoginRequiredMixin, ListView):
     """Контроллер для отображения списка блогов"""
     model = Blog
     extra_context = {
@@ -14,7 +15,7 @@ class BlogListView(ListView):
     }
 
 
-class BlogDetailView(DetailView):
+class BlogDetailView(LoginRequiredMixin, DetailView):
     """Контроллер для отображения одного блога"""
     model = Blog
     extra_context = {
