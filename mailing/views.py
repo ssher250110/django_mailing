@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
-from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView, TemplateView
 
 from blog.models import Blog
 from mailing.forms import ClientForm, MessageForm, MailingForm, MailingUpdateForm
@@ -10,7 +10,7 @@ from mailing.models import Client, Message, Mailing, LoggingMailing
 from users.models import User
 
 
-class InfoListView(LoginRequiredMixin, ListView):
+class InfoView(LoginRequiredMixin, TemplateView):
     """Контроллер отображает на главной странице, количество рассылок, количество активных рассылок,
     количество уникальных клиентов и три случайные статьи из блога"""
     model = Blog
