@@ -1,25 +1,25 @@
 {% extends 'mailing/base.html' %}
 
 {% block title_page %}
-    Log in
+{{ login }}
 {% endblock %}
 
 {% block content %}
-    <div class="container text-center col-5">
-        <form method="post" enctype="multipart/form-data">
-            <div class="col">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit" class="btn btn-outline-success">
-                            Войти
-                        </button>
-                        <a class="btn btn-outline-info" role="button" aria-disabled="true"
-                           href="{% url 'users:reset-password' %}">Сброс пароля</a>
-                    </div>
+<div class="container text-center col-5">
+    <form method="post" enctype="multipart/form-data">
+        <div class="col">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-outline-success">
+                        Войти
+                    </button>
+                    <a class="btn btn-outline-info" role="button" aria-disabled="true"
+                       href="{% url 'users:reset-password' %}">Сброс пароля</a>
                 </div>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
+</div>
 {% endblock %}

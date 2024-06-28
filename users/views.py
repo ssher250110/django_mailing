@@ -18,6 +18,9 @@ class UserCreateView(CreateView):
     form_class = UserRegisterForm
     template_name = 'users/register.html'
     success_url = reverse_lazy('users:login')
+    extra_context = {
+        "login": "Вход",
+    }
 
     def form_valid(self, form):
         user = form.save()
@@ -36,7 +39,7 @@ class UserCreateView(CreateView):
         return super().form_valid(form)
 
     @staticmethod
-    def email_verification(token):
+    def email_verification(request, token):
         user = get_object_or_404(User, token=token)
         user.is_active = True
         user.save()
