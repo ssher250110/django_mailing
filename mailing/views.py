@@ -344,6 +344,10 @@ class ManagerListView(LoginRequiredMixin, ListView):
         "user_page": "Список пользователей",
         "user_list": "Список пользователей",
         "email": "Почта",
+        "last_name": "Фамилия",
+        "first_name": "Имя",
+        "middle_name": "Отчество",
+        "not_specified": "Не указано",
         "is_active": "Активный",
     }
 
