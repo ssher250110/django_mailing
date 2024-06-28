@@ -242,6 +242,7 @@ class MailingListView(LoginRequiredMixin, ListView):
         "title": "Список рассылок",
         "name": "Название рассылки",
         "status_mailing": "Статус рассылки",
+        "is_active": "Активная",
         "view": "Посмотреть",
     }
 
@@ -251,7 +252,7 @@ class MailingListView(LoginRequiredMixin, ListView):
         if user.is_superuser or user.groups.filter(name="manager"):
             queryset = queryset
         else:
-            queryset = queryset.filter(owner=user)
+            queryset = queryset.filter(owner=self.request.user)
         return queryset
 
 
@@ -354,3 +355,13 @@ def switcher_user_active(request, pk):
         user_active.is_active = True
     user_active.save()
     return redirect(reverse("mailing:manager"))
+
+
+def switcher_mailing_active(request, pk):
+    mailing_active = get_object_or_404(Mailing, pk=pk)
+    if mailing_active.is_active:
+        mailing_active.is_active = False
+    else:
+        mailing_active.is_active = True
+    mailing_active.save()
+    return redirect(reverse("mailing:mailing-list"))
