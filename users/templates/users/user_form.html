@@ -1,20 +1,23 @@
 {% extends 'mailing/base.html' %}
 
 {% block title_page %}
-    Registration
+    {{ profile }}
 {% endblock %}
 
 {% block content %}
-    <div class="container text-center col-5">
-        <form method="post" enctype="multipart/form-data">
-            <div class="col">
-                <div class="card shadow-sm">
+    <div class="col-12">
+        <form class="row" method="post" enctype="multipart/form-data">
+            <div class="col-3">
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">{{ profile }}</h3>
+                    </div>
                     <div class="card-body">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <button type="submit" class="btn btn-outline-success">
-                            Регистрация
-                        </button>
+                        <button type="submit" class="btn btn-success">{{ save }}</button>
                     </div>
                 </div>
             </div>
