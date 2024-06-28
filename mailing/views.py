@@ -247,7 +247,10 @@ class MailingListView(LoginRequiredMixin, ListView):
         "title": "Список рассылок",
         "name": "Название рассылки",
         "status_mailing": "Статус рассылки",
+        "owner": "Владелец",
         "is_active": "Активная",
+        "True": "Да",
+        "False": "Нет",
         "view": "Посмотреть",
     }
 

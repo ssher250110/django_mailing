@@ -1,51 +1,57 @@
 {% extends "mailing/base.html" %}
 
 {% block title_page %}
-    {{ title }}
+{{ title }}
 {% endblock %}
 
 {% block title %}
-    <h2>{{ title }}</h2>
+<h2>{{ title }}</h2>
 {% endblock %}
 
 {% block content %}
-    <div class="container text-center col-6">
-        <div class="col align-self-center">
-            <div class="card">
-                <div class="card-body">
-                    {% if not user.is_staff %}
-                        <a class="btn btn-info mb-3"
-                           href="{% url 'mailing:mailing-create' %}" role="button">Добавить рассылку
-                        </a>
-                    {% endif %}
-                    <table class="table table-bordered">
-                        <tr>
-                            <th>{{ name }}</th>
-                            <th>{{ status_mailing }}</th>
-                            <th>{{ is_active }}</th>
-                        </tr>
-                        {% for object in object_list %}
-                            <tr>
-                            <td>{{ object.name }}</td>
-                            <td>{{ object.status_mailing }}</td>
-                            <td>{{ object.is_active }}</td>
-                            {% if object.is_active %}
-                                <td><a class="btn btn-warning"
-                                       href="{% url 'mailing:switcher_mailing_active' object.pk %}">Деактивировать</a>
-                                </td>
-                            {% else %}
-                                <td><a class="btn btn-success"
-                                       href="{% url 'mailing:switcher_mailing_active' object.pk %}">Активировать</a>
-                                </td>
-                            {% endif %}
-                            <td><a class="btn btn--sm btn-secondary"
-                                   href="{% url 'mailing:mailing-detail' object.id %}"
-                                   role="button">{{ view }}
-                            </a></td>
-                        {% endfor %}
-                    </table>
-                </div>
-            </div>
-        </div>
+<div class="container text-center col-6">
+    <div class="col align-self-center">
+        {% if not user.is_staff %}
+        <a class="btn btn-info mb-3"
+           href="{% url 'mailing:mailing-create' %}" role="button">Добавить рассылку
+        </a>
+        {% endif %}
+        <table class="table table-bordered">
+            <tr>
+                <th>{{ name }}</th>
+                <th>{{ status_mailing }}</th>
+                {% if user.is_staff %}
+                <th>{{ owner }}</th>
+                {% endif %}
+                <th>{{ is_active }}</th>
+            </tr>
+            {% for object in object_list %}
+            <tr>
+                <td>{{ object.name }}</td>
+                <td>{{ object.status_mailing }}</td>
+                {% if user.is_staff %}
+                <td>{{ object.owner}}</td>
+                {% endif %}
+                {% if object.is_active %}
+                <td>{{ True }}</td>
+                {% else %}
+                <td>{{ False }}</td>
+                {% endif %}
+                {% if object.is_active %}
+                <td><a class="btn btn-warning"
+                       href="{% url 'mailing:switcher_mailing_active' object.pk %}">Деактивировать</a>
+                </td>
+                {% else %}
+                <td><a class="btn btn-success"
+                       href="{% url 'mailing:switcher_mailing_active' object.pk %}">Активировать</a>
+                </td>
+                {% endif %}
+                <td><a class="btn btn--sm btn-secondary"
+                       href="{% url 'mailing:mailing-detail' object.id %}"
+                       role="button">{{ view }}
+                </a></td>
+                {% endfor %}
+        </table>
     </div>
+</div>
 {% endblock %}
