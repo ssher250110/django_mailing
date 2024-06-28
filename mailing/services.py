@@ -10,6 +10,7 @@ from mailing.models import LoggingMailing, Mailing
 
 
 def send_mailing(mailing):
+    """Функция отправляет сообщение и записывает информацию в логи"""
     try:
         response_server = send_mail(
             subject=mailing.message.subject,
@@ -26,6 +27,8 @@ def send_mailing(mailing):
 
 
 def filters_and_sorted_mailing_by_condition():
+    """Функция фильтрует рассылки по статусу и сортирует в зависимости от периода отправки сообщения,
+    передает в функцию отправки"""
     zone = pytz.timezone(settings.TIME_ZONE)
     current_datetime = datetime.now(zone)
     mailings = Mailing.objects.filter(is_active=True).filter(status_mailing__in=["создана", "запущена"])

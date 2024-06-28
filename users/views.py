@@ -12,6 +12,7 @@ from users.models import User
 
 
 class UserCreateView(CreateView):
+    """Контроллер для создания пользователя"""
     model = User
     form_class = UserRegisterForm
     success_url = reverse_lazy('users:login')
@@ -41,6 +42,7 @@ class UserCreateView(CreateView):
 
 
 class UserResetPasswordView(FormView):
+    """Контроллер для сброса пароля пользователя"""
     model = User
     form_class = PasswordResetForm
     success_url = reverse_lazy('users:login')

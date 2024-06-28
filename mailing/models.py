@@ -6,6 +6,7 @@ NULLABLE = {"blank": True, "null": True}
 
 
 class Client(models.Model):
+    """Модель клиента"""
     email = models.EmailField(unique=True, verbose_name="Почта")
     last_name = models.CharField(max_length=50, **NULLABLE, verbose_name="Фамилия")
     first_name = models.CharField(max_length=50, **NULLABLE, verbose_name="Имя")
@@ -27,6 +28,7 @@ class Client(models.Model):
 
 
 class Message(models.Model):
+    """Модель сообщения"""
     subject = models.CharField(max_length=255, verbose_name="Тема сообщения")
     body = models.TextField(**NULLABLE, verbose_name="Тело сообщения")
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE, verbose_name='Владелец')
@@ -41,6 +43,7 @@ class Message(models.Model):
 
 
 class Mailing(models.Model):
+    """Модель рассылки"""
     PERIOD = [
         ("раз в день", "раз в день"),
         ("раз в неделю", "раз в неделю"),
@@ -69,6 +72,7 @@ class Mailing(models.Model):
 
 
 class LoggingMailing(models.Model):
+    """Модель лога"""
     mailing = models.ForeignKey("Mailing", on_delete=models.CASCADE, **NULLABLE, verbose_name="Рассылка")
     last_attempt_mailing = models.DateTimeField(auto_now=True, verbose_name="Дата и время последней попытки")
     status_attempt = models.BooleanField(max_length=10, default=False, verbose_name="Статус попытки")

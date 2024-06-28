@@ -4,6 +4,7 @@ from blog.models import Blog
 
 
 class BlogListView(ListView):
+    """Контроллер для отображения списка блогов"""
     model = Blog
     extra_context = {
         "Blog_page": "Блог",
@@ -14,6 +15,7 @@ class BlogListView(ListView):
 
 
 class BlogDetailView(DetailView):
+    """Контроллер для отображения одного блога"""
     model = Blog
     extra_context = {
         "Blog_page": "Блог",

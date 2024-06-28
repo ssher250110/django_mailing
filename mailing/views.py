@@ -11,6 +11,8 @@ from users.models import User
 
 
 class InfoListView(LoginRequiredMixin, ListView):
+    """Контроллер отображает на главной страницы, количество рассылок, количество активных рассылок,
+    количество уникальных клиентов и три случайные статьи из блога"""
     model = Blog
     template_name = "mailing/info_view.html"
     extra_context = {
@@ -39,6 +41,7 @@ class InfoListView(LoginRequiredMixin, ListView):
 
 
 class ClientCreateView(LoginRequiredMixin, CreateView):
+    """Контроллер создает клиента сервиса"""
     model = Client
     form_class = ClientForm
     success_url = reverse_lazy("mailing:client-list")
@@ -55,6 +58,7 @@ class ClientCreateView(LoginRequiredMixin, CreateView):
 
 
 class ClientListView(LoginRequiredMixin, ListView):
+    """Контроллер отображает клиентов сервиса"""
     model = Client
     extra_context = {
         "title_page": "Список клиентов",
@@ -74,6 +78,7 @@ class ClientListView(LoginRequiredMixin, ListView):
 
 
 class ClientDetailView(LoginRequiredMixin, DetailView):
+    """Контроллер отображает подробную информацию о клиенте"""
     model = Client
     extra_context = {
         "email": "Почта",
@@ -95,6 +100,7 @@ class ClientDetailView(LoginRequiredMixin, DetailView):
 
 
 class ClientUpdateView(LoginRequiredMixin, UpdateView):
+    """Контроллер изменяет данные о клиенте"""
     model = Client
     form_class = ClientForm
     extra_context = {
@@ -114,6 +120,7 @@ class ClientUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class ClientDeleteView(LoginRequiredMixin, DeleteView):
+    """Контроллер удаляет клиента"""
     model = Client
     success_url = reverse_lazy("mailing:client-list")
     extra_context = {
@@ -132,6 +139,7 @@ class ClientDeleteView(LoginRequiredMixin, DeleteView):
 
 
 class MessageCreateView(LoginRequiredMixin, CreateView):
+    """Контроллер создает сообщение"""
     model = Message
     form_class = MessageForm
     success_url = reverse_lazy("mailing:message-list")
@@ -148,6 +156,7 @@ class MessageCreateView(LoginRequiredMixin, CreateView):
 
 
 class MessageListView(LoginRequiredMixin, ListView):
+    """Контроллер отображает список сообщений"""
     model = Message
     extra_context = {
         "title_page_message_list": "Список писем",
@@ -166,6 +175,7 @@ class MessageListView(LoginRequiredMixin, ListView):
 
 
 class MessageDetailView(LoginRequiredMixin, DetailView):
+    """Контроллер отображает детальную информацию о сообщении"""
     model = Message
     extra_context = {
         "subject_message": "Тема сообщения",
@@ -184,6 +194,7 @@ class MessageDetailView(LoginRequiredMixin, DetailView):
 
 
 class MessageUpdateView(LoginRequiredMixin, UpdateView):
+    """Контроллер обновляет данные сообщения"""
     model = Message
     form_class = MessageForm
     extra_context = {
@@ -203,6 +214,7 @@ class MessageUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class MessageDeleteView(LoginRequiredMixin, DeleteView):
+    """Контроллер удаляет сообщение"""
     model = Message
     success_url = reverse_lazy("mailing:message-list")
     extra_context = {
@@ -221,6 +233,7 @@ class MessageDeleteView(LoginRequiredMixin, DeleteView):
 
 
 class MailingCreateView(LoginRequiredMixin, CreateView):
+    """Контроллер создает рассылку"""
     model = Mailing
     form_class = MailingForm
     success_url = reverse_lazy("mailing:mailing-list")
@@ -242,6 +255,7 @@ class MailingCreateView(LoginRequiredMixin, CreateView):
 
 
 class MailingListView(LoginRequiredMixin, ListView):
+    """Контроллер отображает список рассылок"""
     model = Mailing
     extra_context = {
         "title": "Список рассылок",
@@ -265,6 +279,7 @@ class MailingListView(LoginRequiredMixin, ListView):
 
 
 class MailingDetailView(LoginRequiredMixin, DetailView):
+    """Контроллер отображает детальную информацию о рассылке"""
     model = Mailing
     extra_context = {
         "name": "Название рассылки",
@@ -287,6 +302,7 @@ class MailingDetailView(LoginRequiredMixin, DetailView):
 
 
 class MailingUpdateView(LoginRequiredMixin, UpdateView):
+    """Контроллер обновляет данные о рассылке"""
     model = Mailing
     form_class = MailingUpdateForm
     extra_context = {
@@ -311,6 +327,7 @@ class MailingUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class MailingDeleteView(LoginRequiredMixin, DeleteView):
+    """Контроллер удаляет рассылку"""
     model = Mailing
     success_url = reverse_lazy("mailing:mailing-list")
     extra_context = {
@@ -329,18 +346,22 @@ class MailingDeleteView(LoginRequiredMixin, DeleteView):
 
 
 class LoggingMailingCreateView(CreateView):
+    """Контроллер создает логи"""
     model = LoggingMailing
 
 
 class LoggingMailingListView(ListView):
+    """Контроллер отображает список логов"""
     model = LoggingMailing
 
 
 class LoggingMailingDetailView(DetailView):
+    """Котроллер отображает подробную информацию о логах"""
     model = LoggingMailing
 
 
 class ManagerListView(LoginRequiredMixin, ListView):
+    """Контроллер отображает список пользователей менеджеру"""
     model = User
     template_name = "mailing/manager_list.html"
     extra_context = {
@@ -365,6 +386,7 @@ class ManagerListView(LoginRequiredMixin, ListView):
 
 
 def switcher_user_active(request, pk):
+    """Функция переключает активность пользователя"""
     user_active = get_object_or_404(User, pk=pk)
     if user_active.is_active:
         user_active.is_active = False
@@ -375,6 +397,7 @@ def switcher_user_active(request, pk):
 
 
 def switcher_mailing_active(request, pk):
+    """Функция переключает рассылку"""
     mailing_active = get_object_or_404(Mailing, pk=pk)
     if mailing_active.is_active:
         mailing_active.is_active = False

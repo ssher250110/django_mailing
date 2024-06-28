@@ -5,6 +5,7 @@ from mailing.models import Client, Message, Mailing
 
 
 class StyleFormMixin:
+    """Миксин для визуального оформления формы"""
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
@@ -15,18 +16,21 @@ class StyleFormMixin:
 
 
 class ClientForm(StyleFormMixin, forms.ModelForm):
+    """Форма для создания модели клиента"""
     class Meta:
         model = Client
         exclude = ("owner",)
 
 
 class MessageForm(StyleFormMixin, forms.ModelForm):
+    """Форма для создания модели сообщение"""
     class Meta:
         model = Message
         exclude = ("owner",)
 
 
 class MailingForm(StyleFormMixin, forms.ModelForm):
+    """Форма для создания модели рассылка"""
     def __init__(self, owner, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['clients'].queryset = Client.objects.filter(owner=owner)
@@ -38,6 +42,7 @@ class MailingForm(StyleFormMixin, forms.ModelForm):
 
 
 class MailingUpdateForm(StyleFormMixin, forms.ModelForm):
+    """Форма для обновления модели рассылка"""
     def __init__(self, owner, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['clients'].queryset = Client.objects.filter(owner=owner)
