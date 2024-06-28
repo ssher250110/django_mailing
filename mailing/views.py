@@ -5,7 +5,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
 from blog.models import Blog
-from mailing.forms import ClientForm, MessageForm, MailingForm
+from mailing.forms import ClientForm, MessageForm, MailingForm, MailingUpdateForm
 from mailing.models import Client, Message, Mailing, LoggingMailing
 from users.models import User
 
@@ -235,6 +235,11 @@ class MailingCreateView(LoginRequiredMixin, CreateView):
         mailing.save()
         return super().form_valid(form)
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['owner'] = self.request.user
+        return kwargs
+
 
 class MailingListView(LoginRequiredMixin, ListView):
     model = Mailing
@@ -280,7 +285,7 @@ class MailingDetailView(LoginRequiredMixin, DetailView):
 
 class MailingUpdateView(LoginRequiredMixin, UpdateView):
     model = Mailing
-    form_class = MailingForm
+    form_class = MailingUpdateForm
     extra_context = {
         "update_mailing": "Изменить рассылку",
         "back": "Назад",
@@ -295,6 +300,11 @@ class MailingUpdateView(LoginRequiredMixin, UpdateView):
         if user.is_superuser or self.object.owner == user:
             return self.object
         raise PermissionDenied
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['owner'] = self.request.user
+        return kwargs
 
 
 class MailingDeleteView(LoginRequiredMixin, DeleteView):

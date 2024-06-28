@@ -27,6 +27,20 @@ class MessageForm(StyleFormMixin, forms.ModelForm):
 
 
 class MailingForm(StyleFormMixin, forms.ModelForm):
+    def __init__(self, owner, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['clients'].queryset = Client.objects.filter(owner=owner)
+
+    class Meta:
+        model = Mailing
+        exclude = ("owner",)
+
+
+class MailingUpdateForm(StyleFormMixin, forms.ModelForm):
+    def __init__(self, owner, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['clients'].queryset = Client.objects.filter(owner=owner)
+
     class Meta:
         model = Mailing
         exclude = ("owner",)
