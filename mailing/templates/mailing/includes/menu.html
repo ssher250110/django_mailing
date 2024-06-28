@@ -17,7 +17,7 @@
                     {% endif %}
                     {% if user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'users:logout' %}">Выйти</a></li>
-                    <li><a href="{% url 'users:profile' %}" class="text-white">Профиль</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'users:profile' %}">Профиль</a></li>
                     {% else %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'users:login' %}">Войти</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'users:register' %}">Регистрация</a></li>
