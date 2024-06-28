@@ -6,8 +6,10 @@
                     <li class="nav-item"><a class="nav-link" href="{% url 'mailing:info-list' %}">Главная страница</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'mailing:mailing-list' %}">Рассылки</a></li>
+                    {% if not user.is_staff %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'mailing:client-list' %}">Клиенты</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'mailing:message-list' %}">Письма</a></li>
+                    {% endif %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'blog:blog' %}">Блог</a></li>
                     {% if user.is_staff or user.is_superuser %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'mailing:manager' %}">Пользователи</a>
