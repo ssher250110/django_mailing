@@ -31,13 +31,13 @@ poetry install
 
 3. В файле /.env_example подставьте свои переменные окружения и переименуйте файл в .env
 
-4. Применить миграции
+4. Примените миграции
 
 ```bash
 python manage.py migrate
 ```
 
-5. Загрузить фикстуры
+5. Загрузите фикстуры
 
 ```bash
 python3 manage.py loaddata fixtures/auth_data.json
@@ -46,7 +46,7 @@ python3 manage.py loaddata fixtures/mailing_data.json
 python3 manage.py loaddata fixtures/blog_data.json
 ```
 
-6. Запустить сервер
+6. Запустите сервер
 ```bash
 python3 manage.py runserver
 ```
