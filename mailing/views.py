@@ -67,6 +67,7 @@ class ClientListView(LoginRequiredMixin, ListView):
         "email": "Почта",
         "last_name": "Фамилия",
         "view": "Посмотреть",
+        "not_specified": "Не указано",
     }
 
     def get_queryset(self):
@@ -91,6 +92,7 @@ class ClientDetailView(LoginRequiredMixin, DetailView):
         "back": "Назад",
         "update": "Изменить",
         "delete": "Удалить",
+        "not_specified": "Не указано",
     }
 
     def get_object(self, queryset=None):
@@ -185,6 +187,7 @@ class MessageDetailView(LoginRequiredMixin, DetailView):
         "back": "Назад",
         "update": "Изменить",
         "delete": "Удалить",
+        "not_specified": "Не указано",
     }
 
     def get_object(self, queryset=None):

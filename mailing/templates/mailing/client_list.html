@@ -24,7 +24,11 @@
             {% for object in object_list %}
             <tr>
                 <td>{{ object.email }}</td>
+                {% if object.last_name %}
                 <td>{{ object.last_name }}</td>
+                {% else %}
+                <td>{{ not_specified }}</td>
+                {% endif %}
                 <td><a class="btn btn--sm btn-secondary"
                        href="{% url 'mailing:client-detail' object.id %}"
                        role="button">{{ view }}

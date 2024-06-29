@@ -17,10 +17,26 @@
             </tr>
             <tr>
                 <td>{{ object.email }}</td>
+                {% if object.last_name %}
                 <td>{{ object.last_name }}</td>
+                {% else %}
+                <td>{{ not_specified }}</td>
+                {% endif %}
+                {% if object.first_name %}}
                 <td>{{ object.first_name }}</td>
+                {% else %}
+                <td>{{ not_specified }}</td>
+                {% endif %}
+                {% if object.middle_name %}}
                 <td>{{ object.middle_name }}</td>
+                {% else %}
+                <td>{{ not_specified }}</td>
+                {% endif %}
+                {% if object.comment %}}
                 <td>{{ object.comment }}</td>
+                {% else %}
+                <td>{{ not_specified }}</td>
+                {% endif %}
         </table>
         <a class="btn btn--sm btn-outline-secondary"
            href="{% url "mailing:client-list" %}"
