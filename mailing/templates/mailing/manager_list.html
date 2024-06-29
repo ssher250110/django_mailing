@@ -27,11 +27,11 @@
                 <td>{{ object.middle_name }} {{ not_specified }}</td>
                 {% if object.is_active %}
                 <td><a class="btn btn-warning"
-                       href="{% url 'mailing:switcher_user_active' object.pk %}">Деактивировать</a>
+                       href="{% url "mailing:switcher_user_active" object.pk %}">Деактивировать</a>
                 </td>
                 {% else %}
                 <td><a class="btn btn-success"
-                       href="{% url 'mailing:switcher_user_active' object.pk %}">Активировать</a>
+                       href="{% url "mailing:switcher_user_active" object.pk %}">Активировать</a>
                 </td>
                 {% endif %}
             </tr>

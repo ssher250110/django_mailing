@@ -13,7 +13,7 @@
     <div class="col align-self-center">
         {% if not user.is_staff %}
         <a class="btn btn-info mb-3"
-           href="{% url 'mailing:message-create' %}" role="button">Добавить письмо
+           href="{% url "mailing:message-create" %}" role="button">Добавить письмо
         </a>
         {% endif %}
         <table class="table table-bordered ">
@@ -24,7 +24,7 @@
             <tr>
                 <td>{{ object.subject }}</td>
                 <td><a class="btn btn--sm btn-secondary"
-                       href="{% url 'mailing:message-detail' object.id %}"
+                       href="{% url "mailing:message-detail" object.id %}"
                        role="button">{{ view }}
                 </a></td>
                 {% endfor %}

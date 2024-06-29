@@ -30,11 +30,11 @@
                    role="button">{{ back }}</a>
                 {% if not user.is_staff %}
                     <a class="btn btn--sm btn-outline-secondary"
-                       href="{% url 'mailing:mailing-update' object.id %}"
+                       href="{% url "mailing:mailing-update" object.id %}"
                        role="button">{{ update }}
                     </a>
                     <a class="btn btn--sm btn-outline-secondary"
-                       href="{% url 'mailing:mailing-delete' object.id %}"
+                       href="{% url "mailing:mailing-delete" object.id %}"
                        role="button">{{ delete }}</a>
                 {% endif %}
             </div>

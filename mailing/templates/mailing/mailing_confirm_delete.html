@@ -16,7 +16,7 @@
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn--sm btn-danger">{{ delete }}</button>
                                 <a class="btn btn--sm btn-outline-secondary"
-                                   href="{% url 'mailing:mailing-detail' object.id %}" role="button">Отмена</a>
+                                   href="{% url "mailing:mailing-detail" object.id %}" role="button">Отмена</a>
                             </form>
                         </div>
                     </div>

@@ -13,7 +13,7 @@
     <div class="col align-self-center">
         {% if not user.is_staff %}
         <a class="btn btn-info mb-3"
-           href="{% url 'mailing:mailing-create' %}" role="button">Добавить рассылку
+           href="{% url "mailing:mailing-create" %}" role="button">Добавить рассылку
         </a>
         {% endif %}
         <table class="table table-bordered">
@@ -39,15 +39,15 @@
                 {% endif %}
                 {% if object.is_active %}
                 <td><a class="btn btn-warning"
-                       href="{% url 'mailing:switcher_mailing_active' object.pk %}">Деактивировать</a>
+                       href="{% url "mailing:switcher_mailing_active" object.pk %}">Деактивировать</a>
                 </td>
                 {% else %}
                 <td><a class="btn btn-success"
-                       href="{% url 'mailing:switcher_mailing_active' object.pk %}">Активировать</a>
+                       href="{% url "mailing:switcher_mailing_active" object.pk %}">Активировать</a>
                 </td>
                 {% endif %}
                 <td><a class="btn btn--sm btn-secondary"
-                       href="{% url 'mailing:mailing-detail' object.id %}"
+                       href="{% url "mailing:mailing-detail" object.id %}"
                        role="button">{{ view }}
                 </a></td>
                 {% endfor %}

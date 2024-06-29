@@ -13,7 +13,7 @@
     <div class="col align-self-center">
         {% if not user.is_staff %}
         <a class="btn btn-info mb-3"
-           href="{% url 'mailing:client-create' %}" role="button">Добавить клиента
+           href="{% url "mailing:client-create" %}" role="button">Добавить клиента
         </a>
         {% endif %}
         <table class="table table-bordered ">
@@ -30,7 +30,7 @@
                 <td>{{ not_specified }}</td>
                 {% endif %}
                 <td><a class="btn btn--sm btn-secondary"
-                       href="{% url 'mailing:client-detail' object.id %}"
+                       href="{% url "mailing:client-detail" object.id %}"
                        role="button">{{ view }}
                 </a></td>
                 {% endfor %}
