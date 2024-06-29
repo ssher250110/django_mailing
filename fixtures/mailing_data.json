@@ -1,0 +1,199 @@
+[
+  {
+    "model": "mailing.client",
+    "pk": 6,
+    "fields": {
+      "email": "client1@client1.com",
+      "last_name": "client",
+      "first_name": null,
+      "middle_name": null,
+      "comment": "",
+      "owner": 11
+    }
+  },
+  {
+    "model": "mailing.client",
+    "pk": 7,
+    "fields": {
+      "email": "client2@client2.com",
+      "last_name": null,
+      "first_name": null,
+      "middle_name": null,
+      "comment": "",
+      "owner": 11
+    }
+  },
+  {
+    "model": "mailing.client",
+    "pk": 8,
+    "fields": {
+      "email": "client3@client3.com",
+      "last_name": null,
+      "first_name": null,
+      "middle_name": null,
+      "comment": "",
+      "owner": 11
+    }
+  },
+  {
+    "model": "mailing.client",
+    "pk": 9,
+    "fields": {
+      "email": "client4@client4.com",
+      "last_name": null,
+      "first_name": null,
+      "middle_name": null,
+      "comment": "",
+      "owner": 11
+    }
+  },
+  {
+    "model": "mailing.client",
+    "pk": 10,
+    "fields": {
+      "email": "user5@user5.com",
+      "last_name": null,
+      "first_name": null,
+      "middle_name": null,
+      "comment": "",
+      "owner": 12
+    }
+  },
+  {
+    "model": "mailing.client",
+    "pk": 11,
+    "fields": {
+      "email": "user6@user6.com",
+      "last_name": null,
+      "first_name": null,
+      "middle_name": null,
+      "comment": "",
+      "owner": 12
+    }
+  },
+  {
+    "model": "mailing.client",
+    "pk": 12,
+    "fields": {
+      "email": "user7@user7.com",
+      "last_name": null,
+      "first_name": null,
+      "middle_name": null,
+      "comment": "",
+      "owner": 12
+    }
+  },
+  {
+    "model": "mailing.message",
+    "pk": 6,
+    "fields": {
+      "subject": "День Рождения",
+      "body": "С Днем Рождения!",
+      "owner": 11
+    }
+  },
+  {
+    "model": "mailing.message",
+    "pk": 7,
+    "fields": {
+      "subject": "Новый Год",
+      "body": "С Новым Годом!!!",
+      "owner": 11
+    }
+  },
+  {
+    "model": "mailing.message",
+    "pk": 8,
+    "fields": {
+      "subject": "Корпоратив",
+      "body": "Информация о корпоративе",
+      "owner": 12
+    }
+  },
+  {
+    "model": "mailing.message",
+    "pk": 9,
+    "fields": {
+      "subject": "Отпуск",
+      "body": "Данные об отпуске.",
+      "owner": 12
+    }
+  },
+  {
+    "model": "mailing.message",
+    "pk": 10,
+    "fields": {
+      "subject": "test",
+      "body": "",
+      "owner": 11
+    }
+  },
+  {
+    "model": "mailing.mailing",
+    "pk": 9,
+    "fields": {
+      "name": "День рождения",
+      "message": 6,
+      "start_mailing": "2024-06-29T01:12:12Z",
+      "period": "раз в день",
+      "status_mailing": "создана",
+      "is_active": true,
+      "owner": 11,
+      "clients": [
+        6
+      ]
+    }
+  },
+  {
+    "model": "mailing.mailing",
+    "pk": 10,
+    "fields": {
+      "name": "Новый год",
+      "message": 7,
+      "start_mailing": "2024-06-29T01:12:36Z",
+      "period": "раз в неделю",
+      "status_mailing": "создана",
+      "is_active": true,
+      "owner": 11,
+      "clients": [
+        7,
+        8,
+        9
+      ]
+    }
+  },
+  {
+    "model": "mailing.mailing",
+    "pk": 11,
+    "fields": {
+      "name": "Корпоратив",
+      "message": 8,
+      "start_mailing": "2024-06-29T01:18:22Z",
+      "period": "раз в месяц",
+      "status_mailing": "создана",
+      "is_active": true,
+      "owner": 12,
+      "clients": [
+        10,
+        11,
+        12
+      ]
+    }
+  },
+  {
+    "model": "mailing.mailing",
+    "pk": 12,
+    "fields": {
+      "name": "Отпуск",
+      "message": 9,
+      "start_mailing": "2024-06-29T01:18:44Z",
+      "period": "раз в неделю",
+      "status_mailing": "создана",
+      "is_active": true,
+      "owner": 12,
+      "clients": [
+        11
+      ]
+    }
+  }
+]

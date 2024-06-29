@@ -1,0 +1,57 @@
+[
+  {
+    "model": "blog.blog",
+    "pk": 6,
+    "fields": {
+      "title": "Рассылки",
+      "description": "Хорошая возможность автоматизировать и упростить рассылку сообщений.",
+      "image": "",
+      "view_count": 5,
+      "created_at": "2024-06-29T00:58:16.318Z"
+    }
+  },
+  {
+    "model": "blog.blog",
+    "pk": 7,
+    "fields": {
+      "title": "Клиенты",
+      "description": "Можно удобно добавлять и изменять данные клиентов.",
+      "image": "",
+      "view_count": 2,
+      "created_at": "2024-06-29T00:59:21.854Z"
+    }
+  },
+  {
+    "model": "blog.blog",
+    "pk": 8,
+    "fields": {
+      "title": "Письма",
+      "description": "Размещение писем.",
+      "image": "",
+      "view_count": 10,
+      "created_at": "2024-06-29T01:00:16.105Z"
+    }
+  },
+  {
+    "model": "blog.blog",
+    "pk": 9,
+    "fields": {
+      "title": "Блог",
+      "description": "Обсуждение раздела блог, обратная связь.",
+      "image": "",
+      "view_count": 2,
+      "created_at": "2024-06-29T01:01:00.882Z"
+    }
+  },
+  {
+    "model": "blog.blog",
+    "pk": 10,
+    "fields": {
+      "title": "test",
+      "description": "",
+      "image": "",
+      "view_count": 1,
+      "created_at": "2024-06-29T01:40:47.037Z"
+    }
+  }
+]
