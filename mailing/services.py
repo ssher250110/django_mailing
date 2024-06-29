@@ -55,19 +55,6 @@ def filters_and_sorted_mailing_by_condition():
             mailing.save()
 
 
-def get_blogs_from_cache():
-    """Функция получает данные о блогах из кэша, если кэш пустой, получает данные из базы данных"""
-    if not CACHE_ENABLED:
-        return Blog.objects.all()[:3]
-    key = "blogs"
-    blogs = cache.get(key)
-    if blogs is not None:
-        return blogs
-    blogs = Blog.objects.all()[:3]
-    cache.set(key, blogs)
-    return blogs
-
-
 def get_mailing_count_from_cache():
     """Функция получает данные о количестве рассылок из кэша, если кэш пустой, получает данные из базы данных"""
     if not CACHE_ENABLED:
