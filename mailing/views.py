@@ -7,7 +7,7 @@ from django.views.generic import ListView, CreateView, DetailView, UpdateView, D
 from blog.models import Blog
 from mailing.forms import ClientForm, MessageForm, MailingForm, MailingUpdateForm
 from mailing.models import Client, Message, Mailing, LoggingMailing
-from mailing.services import get_blogs_from_cache, get_mailing_count_from_cache, get_mailing_is_active_from_cache, \
+from mailing.services import get_mailing_count_from_cache, get_mailing_is_active_from_cache, \
     get_mailing_clients_unique_from_cache
 from users.models import User
 
