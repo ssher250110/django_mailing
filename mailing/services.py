@@ -2,9 +2,13 @@ import smtplib
 from datetime import datetime
 
 import pytz
-from apscheduler.schedulers.background import BackgroundScheduler
+
 from django.conf import settings
+from django.core.cache import cache
 from django.core.mail import send_mail
+
+from blog.models import Blog
+from config.settings import CACHE_ENABLED
 
 from mailing.models import LoggingMailing, Mailing
 
@@ -49,3 +53,57 @@ def filters_and_sorted_mailing_by_condition():
             send_mailing(mailing)
             mailing.status_mailing = "запущена"
             mailing.save()
+
+
+def get_blogs_from_cache():
+    """Функция получает данные о блогах из кэша, если кэш пустой, получает данные из базы данных"""
+    if not CACHE_ENABLED:
+        return Blog.objects.all()[:3]
+    key = "blogs"
+    blogs = cache.get(key)
+    if blogs is not None:
+        return blogs
+    blogs = Blog.objects.all()[:3]
+    cache.set(key, blogs)
+    return blogs
+
+
+def get_mailing_count_from_cache():
+    """Функция получает данные о количестве рассылок из кэша, если кэш пустой, получает данные из базы данных"""
+    if not CACHE_ENABLED:
+        return Mailing.objects.all().count()
+    key = "mailing_count"
+    mailing = cache.get(key)
+    if mailing is not None:
+        return mailing
+    mailing = Mailing.objects.all().count()
+    cache.set(key, mailing)
+    return mailing
+
+
+def get_mailing_is_active_from_cache():
+    """Функция получает данные о количестве активных рассылок из кэша, если кэш пустой,
+    получает данные из базы данных"""
+    if not CACHE_ENABLED:
+        return Mailing.objects.filter(is_active=True).count()
+    key = "mailing_is_active"
+    mailing = cache.get(key)
+    if mailing is not None:
+        return mailing
+    mailing = Mailing.objects.filter(is_active=True).count()
+    cache.set(key, mailing)
+    return mailing
+
+
+def get_mailing_clients_unique_from_cache():
+    """Функция получает данные о количестве уникальных клиентов для рассылок из кэша, если кэш пустой,
+    получает данные из базы данных"""
+    if not CACHE_ENABLED:
+        return Mailing.objects.distinct().count()
+    key = "mailing_clients_unique"
+    mailing = cache.get(key)
+    if mailing is not None:
+        return mailing
+    mailing = Mailing.objects.distinct().count()
+    cache.set(key, mailing)
+    return mailing

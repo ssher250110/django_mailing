@@ -7,10 +7,12 @@ from django.views.generic import ListView, CreateView, DetailView, UpdateView, D
 from blog.models import Blog
 from mailing.forms import ClientForm, MessageForm, MailingForm, MailingUpdateForm
 from mailing.models import Client, Message, Mailing, LoggingMailing
+from mailing.services import get_blogs_from_cache, get_mailing_count_from_cache, get_mailing_is_active_from_cache, \
+    get_mailing_clients_unique_from_cache
 from users.models import User
 
 
-class InfoView(LoginRequiredMixin, TemplateView):
+class InfoListView(LoginRequiredMixin, ListView):
     """Контроллер отображает на главной странице, количество рассылок, количество активных рассылок,
     количество уникальных клиентов и три случайные статьи из блога"""
     model = Blog
@@ -28,15 +30,14 @@ class InfoView(LoginRequiredMixin, TemplateView):
 
     }
 
-    def get_queryset(self, *args, **kwargs):
-        queryset = super().get_queryset(*args, **kwargs)
-        return queryset[:3]
+    def get_queryset(self):
+        return get_blogs_from_cache()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["mailing_count"] = Mailing.objects.all().count()
-        context["mailing_is_active"] = Mailing.objects.filter(is_active=True).count()
-        context["mailing_clients_unique"] = Mailing.objects.distinct().count()
+        context["mailing_count"] = get_mailing_count_from_cache()
+        context["mailing_is_active"] = get_mailing_is_active_from_cache()
+        context["mailing_clients_unique"] = get_mailing_clients_unique_from_cache()
         return context
 
 

@@ -1,16 +1,16 @@
 from django.urls import path
-from django.views.decorators.cache import cache_page
+# from django.views.decorators.cache import cache_page
 
 from mailing.apps import MailingConfig
 from mailing.views import ClientListView, ClientCreateView, ClientDetailView, ClientUpdateView, ClientDeleteView, \
     MessageCreateView, MessageListView, MessageDetailView, MessageUpdateView, MessageDeleteView, \
     MailingCreateView, MailingListView, MailingDetailView, MailingUpdateView, MailingDeleteView, \
-    InfoView, ManagerListView, switcher_user_active, switcher_mailing_active
+    InfoListView, ManagerListView, switcher_user_active, switcher_mailing_active
 
 app_name = MailingConfig.name
 
 urlpatterns = [
-    path("", (cache_page(60))(InfoView.as_view()), name="info-view"),
+    path("", InfoListView.as_view(), name="info-view"),
 
     path("client/create/", ClientCreateView.as_view(), name="client-create"),
     path("client/", ClientListView.as_view(), name="client-list"),
