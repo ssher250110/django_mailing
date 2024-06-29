@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-md bg-dark sticky-top border-bottom" data-bs-theme="dark">
+    <div class="container">
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+            <div class="offcanvas-body">
+                <ul class="navbar-nav flex-grow-1 justify-content-between">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'mailing:info-view' %}">Главная страница</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'mailing:mailing-list' %}">Рассылки</a></li>
+                    {% if not user.is_staff %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'mailing:client-list' %}">Клиенты</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'mailing:message-list' %}">Письма</a></li>
+                    {% endif %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'blog:blog' %}">Блог</a></li>
+                    {% if user.is_staff or user.is_superuser %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'mailing:manager' %}">Пользователи</a>
+                    </li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'users:logout' %}">Выйти</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'users:profile' %}">Профиль</a></li>
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'users:login' %}">Войти</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'users:register' %}">Регистрация</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

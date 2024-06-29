@@ -1,0 +1,43 @@
+{% extends "mailing/base.html" %}
+
+{% block title_page %}
+    {{ object.name }}
+{% endblock %}
+
+{% block content %}
+    <div class="col align-self-center">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>{{ name }}</th>
+                        <th>{{ clients }}</th>
+                        <th>{{ message }}</th>
+                        <th>{{ start_mailing }}</th>
+                        <th>{{ period }}</th>
+                        <th>{{ status_mailing }}</th>
+                    </tr>
+                    <tr>
+                        <td>{{ object.name }}</td>
+                        <td>{{ object.clients.all|join:"; " }}</td>
+                        <td>{{ object.message }}</td>
+                        <td>{{ object.start_mailing }}</td>
+                        <td>{{ object.period }}</td>
+                        <td>{{ object.status_mailing }}</td>
+                </table>
+                <a class="btn btn--sm btn-outline-secondary"
+                   href="{% url "mailing:mailing-list" %}"
+                   role="button">{{ back }}</a>
+                {% if not user.is_staff %}
+                    <a class="btn btn--sm btn-outline-secondary"
+                       href="{% url 'mailing:mailing-update' object.id %}"
+                       role="button">{{ update }}
+                    </a>
+                    <a class="btn btn--sm btn-outline-secondary"
+                       href="{% url 'mailing:mailing-delete' object.id %}"
+                       role="button">{{ delete }}</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

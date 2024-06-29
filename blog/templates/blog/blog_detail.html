@@ -1,0 +1,45 @@
+{% extends 'mailing/base.html' %}
+{% load my_tags %}
+
+{% block title_page %}
+    {{ Blog_page }}
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div class="container text-center col-10">
+            <div class="col align-self-center">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card shadow-sm m-lg-3">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">{{ Data_creation }}: {{ object.created_at }}</li>
+                                <li class="list-group-item">{{ Data_count_view }}: {{ object.view_count }}</li>
+                            </ul>
+                            <img class="align-self-start" src="{{ object.photo | mymedia }}"
+                                 style="height: 200px;width: auto;">
+                            <div class="card-body">
+                                <div class="card-header py-2">
+                                    <h5 class="my-1 fw-normal">{{ object.title }}</h5>
+                                </div>
+                                <div class="card-header py-2">
+                                    {% if object.description %}
+                                        <p class="text-start m-3">{{ object.description }}</p>
+                                    {% else %}
+                                        {{ Not_body }}
+                                    {% endif %}
+                                </div>
+                                <div class="btn-group m-sm-2">
+                                    <a class="btn btn--sm btn-outline-secondary"
+                                       href="{% url 'blog:blog' %}"
+                                       role="button">{{ Back }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

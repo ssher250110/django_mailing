@@ -1,0 +1,44 @@
+{% extends 'mailing/base.html' %}
+
+{% block title_page %}
+    {% if object %}
+        {{ update_mailing }}
+    {% else %}
+        {{ create_mailing }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+            <form method="post" enctype="multipart/form-data">
+                <div class="row justify-content-center">
+                    <div class="col-9">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                {% if object %}
+                                    <a class="btn btn--sm btn-outline-secondary"
+                                       href="{% url "mailing:mailing-detail" object.id %}"
+                                       role="button">{{ back }}</a>
+                                {% else %}
+                                    <a class="btn btn--sm btn-outline-secondary"
+                                       href="{% url "mailing:mailing-list" %}"
+                                       role="button">{{ back }}</a>
+                                {% endif %}
+                                <button type="submit" class="btn btn-outline-success">
+                                    {% if object %}
+                                        {{ update_mailing }}
+                                    {% else %}
+                                        {{ create_mailing }}
+                                    {% endif %}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

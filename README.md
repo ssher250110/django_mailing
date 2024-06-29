@@ -13,3 +13,59 @@
   пользователей, блога)
 - Решение выложили на [github.com/](github.com/).
 
+## Инструкция для запуска проекта
+
+1. Клонируйте данный репозиторий к себе на локальную машину:
+
+```bash
+    git clone https://github.com/ssher250110/homework_docker.git
+```
+
+2. Настройте виртуальное окружение poetry и установите библиотеки и их зависимости.
+
+```bash
+poetry env use python3.12
+poetry shell
+poetry install
+```
+
+3. В файле /.env_example подставьте свои переменные окружения и переименуйте файл в .env
+
+4. Применить миграции
+
+```bash
+python manage.py migrate
+```
+
+5. Загрузить фикстуры
+
+```bash
+python3 manage.py loaddata fixtures/auth_data.json
+python3 manage.py loaddata fixtures/users_data.json
+python3 manage.py loaddata fixtures/mailing_data.json
+python3 manage.py loaddata fixtures/blog_data.json
+```
+
+6. Запустить сервер
+```bash
+python3 manage.py runserver
+```
+
+7. Команда для суперпользователя
+```bash
+python3 manage.py csu
+```
+
+8. Команда для запуска планировщика
+```bash
+python3 manage.py runapscheduler
+```
+
+## Дополнение
+
+Права доступа
+
+`admin@admin.com` пароль `12345` - суперпользователь  
+`moder@moder.com` пароль `12345` - менеджер(is_staff)  
+`user@user.com` пароль `12345` - пользователь  
+`user2@user2.com` пароль `12345` - пользователь

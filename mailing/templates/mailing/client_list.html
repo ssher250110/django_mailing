@@ -1,0 +1,40 @@
+{% extends "mailing/base.html" %}
+
+{% block title_page %}
+{{ title_page }}
+{% endblock %}
+
+{% block title %}
+<h2>{{ title_page }}</h2>
+{% endblock %}
+
+{% block content %}
+<div class="container text-center col-8">
+    <div class="col align-self-center">
+        {% if not user.is_staff %}
+        <a class="btn btn-info mb-3"
+           href="{% url 'mailing:client-create' %}" role="button">Добавить клиента
+        </a>
+        {% endif %}
+        <table class="table table-bordered ">
+            <tr>
+                <th>{{ email }}</th>
+                <th>{{ last_name }}</th>
+            </tr>
+            {% for object in object_list %}
+            <tr>
+                <td>{{ object.email }}</td>
+                {% if object.last_name %}
+                <td>{{ object.last_name }}</td>
+                {% else %}
+                <td>{{ not_specified }}</td>
+                {% endif %}
+                <td><a class="btn btn--sm btn-secondary"
+                       href="{% url 'mailing:client-detail' object.id %}"
+                       role="button">{{ view }}
+                </a></td>
+                {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

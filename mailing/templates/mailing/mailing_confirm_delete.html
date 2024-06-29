@@ -1,0 +1,27 @@
+{% extends 'mailing/base.html' %}
+
+{% block title_page %}
+    {{ title_page }}
+{% endblock %}
+
+{% block content %}
+    <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <p>{{ delete_mailing }}: {{ object.name }}?</p>
+                            <form method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn--sm btn-danger">{{ delete }}</button>
+                                <a class="btn btn--sm btn-outline-secondary"
+                                   href="{% url 'mailing:mailing-detail' object.id %}" role="button">Отмена</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

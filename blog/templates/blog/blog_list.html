@@ -1,0 +1,45 @@
+{% extends 'mailing/base.html' %}
+{% load my_tags %}
+
+{% block title_page %}
+    {{ Blog_page }}
+{% endblock %}
+
+{% block title %}
+    <h2 class="display-5 fw-bold">{{ title }}</h2>
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div class="container text-center col-6">
+            <div class="col align-self-center">
+                {% for object in object_list %}
+                    <div class="col">
+                        <div class="card shadow-sm m-lg-3">
+                            <img class="align-self-start" src="{{ object.photo | mymedia }}"
+                                 style="height: 100px;width: auto;">
+                            <div class="card-body">
+                                <div class="card-header py-2">
+                                    <h5 class="my-1 fw-normal">{{ object.title }}</h5>
+                                </div>
+                                <div class="card-header py-2">
+                                    {% if object.description %}
+                                        <p class="text-start m-3">{{ object.description|truncatewords:15 }}</p>
+                                    {% else %}
+                                        {{ Not_body }}
+                                    {% endif %}
+                                </div>
+                                <div class="btn-group m-sm-2">
+                                    <a class="btn btn--sm btn-outline-secondary"
+                                       href="{% url 'blog:blog-info' object.id %}"
+                                       role="button">{{ View }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

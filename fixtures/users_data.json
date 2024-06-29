@@ -1,0 +1,88 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$4Ooz5r8vCcLx1vio027QAx$D2+GeMenK0ueoTTHamBkmvkwgNrMn6bJFbnokmesb0o=",
+      "last_login": "2024-06-29T00:52:09.936Z",
+      "is_superuser": true,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-06-22T21:39:49.313Z",
+      "email": "admin@admin.com",
+      "phone": null,
+      "country": null,
+      "avatar": "",
+      "token": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 10,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$duaAzb8b14fg3lwno5xDVt$XWt6zeGABRwAcEGE8F7D8Z2I1VF+qRKNeBIJZoLZ768=",
+      "last_login": "2024-06-29T01:41:34.526Z",
+      "is_superuser": false,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-06-29T01:01:49Z",
+      "email": "moder@moder.com",
+      "phone": null,
+      "country": null,
+      "avatar": "",
+      "token": null,
+      "groups": [
+        1
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 11,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$IidzLXSDNs3EFY6ehVApYI$0EAmibkpUsVTvyxI+jXH54uTSI6Cv377sCHIhiU5/GI=",
+      "last_login": "2024-06-29T01:20:28.351Z",
+      "is_superuser": false,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-06-29T01:02:13.024Z",
+      "email": "user@user.com",
+      "phone": null,
+      "country": null,
+      "avatar": "",
+      "token": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 12,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$ifQfLyd6tPxwLO28r0aGnm$w17tEB5RJ4iyoqCwFGwzSn3Aee6cVKEs4dxqVHtP0Yw=",
+      "last_login": "2024-06-29T01:16:10.988Z",
+      "is_superuser": false,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-06-29T01:15:48.940Z",
+      "email": "user2@user2.com",
+      "phone": null,
+      "country": null,
+      "avatar": "",
+      "token": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]
