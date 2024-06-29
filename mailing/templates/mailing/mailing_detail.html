@@ -16,6 +16,9 @@
                         <th>{{ start_mailing }}</th>
                         <th>{{ period }}</th>
                         <th>{{ status_mailing }}</th>
+                        {% if user.is_staff %}
+                        <th>{{ owner }}</th>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td>{{ object.name }}</td>
@@ -24,6 +27,9 @@
                         <td>{{ object.start_mailing }}</td>
                         <td>{{ object.period }}</td>
                         <td>{{ object.status_mailing }}</td>
+                        {% if user.is_staff %}
+                        <th>{{ object.owner }}</th>
+                        {% endif %}
                 </table>
                 <a class="btn btn--sm btn-outline-secondary"
                    href="{% url "mailing:mailing-list" %}"

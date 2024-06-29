@@ -293,6 +293,7 @@ class MailingDetailView(LoginRequiredMixin, DetailView):
         "start_mailing": "Дата и время первой отправки рассылки",
         "period": "Периодичность рассылки",
         "status_mailing": "Статус рассылки",
+        "owner": "Владелец",
         "back": "Назад",
         "update": "Изменить",
         "delete": "Удалить",
