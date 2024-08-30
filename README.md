@@ -1,4 +1,4 @@
-# Курсовая работа 6. Основы веб-разработки на Django
+# Основы веб-разработки на Django(Рассылка)
 
 ## Критерии приемки курсовой работы
 
@@ -15,6 +15,8 @@
 
 ## Инструкция для запуска проекта
 
+<details>
+<summary>Инструкция</summary>
 1. Клонируйте данный репозиторий к себе на локальную машину:
 
 ```bash
@@ -47,16 +49,19 @@ python3 manage.py loaddata fixtures/blog_data.json
 ```
 
 6. Запустите сервер
+
 ```bash
 python3 manage.py runserver
 ```
 
 7. Команда для суперпользователя
+
 ```bash
 python3 manage.py csu
 ```
 
 8. Команда для запуска планировщика
+
 ```bash
 python3 manage.py runapscheduler
 ```
@@ -69,3 +74,4 @@ python3 manage.py runapscheduler
 `moder@moder.com` пароль `12345` - менеджер(is_staff)  
 `user@user.com` пароль `12345` - пользователь  
 `user2@user2.com` пароль `12345` - пользователь
+</details>
