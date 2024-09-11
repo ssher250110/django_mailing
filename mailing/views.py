@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
-from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView, TemplateView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
 from blog.models import Blog
 from mailing.forms import ClientForm, MessageForm, MailingForm, MailingUpdateForm
@@ -362,7 +362,7 @@ class LoggingMailingListView(ListView):
 
 
 class LoggingMailingDetailView(DetailView):
-    """Котроллер отображает подробную информацию о логах"""
+    """Контроллер отображает подробную информацию о логах"""
     model = LoggingMailing
 
 
